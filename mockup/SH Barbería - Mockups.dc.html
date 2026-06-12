@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #0C100F; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#0C100F;padding:64px 48px 120px;font-family:'Manrope',sans-serif">
+<div style="max-width:1380px;margin:0 auto">
+
+  <!-- ============ ENCABEZADO ============ -->
+  <div style="display:flex;align-items:center;gap:24px;margin-bottom:8px">
+    <img src="assets/logo.jpg" alt="SH Barbería" style="width:72px;height:72px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.5)">
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="font-family:'Marcellus',serif;font-size:34px;color:#F2EDE2;letter-spacing:1px">SH Barbería — Web App</div>
+      <div style="font-size:13px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Mockups · Cliente móvil + Panel barbero y admin</div>
+    </div>
+  </div>
+
+  <!-- ════════════ SECCIÓN 1 · APP DEL CLIENTE ════════════ -->
+  <div data-screen-label="Sección: App del cliente" style="display:flex;align-items:center;gap:16px;margin:72px 0 40px">
+    <div style="font-family:'Marcellus',serif;font-size:24px;color:#D8BC82;letter-spacing:1.5px">01 · App del cliente</div>
+    <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(201,164,92,0.45),transparent)"></div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px 44px">
+
+    <!-- ─── Pantalla: Inicio ─── -->
+    <div data-screen-label="Cliente: Inicio" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Inicio</div>
+      <x-import component="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="min-height:100%;background:#0B2422;color:#F2EDE2;font-family:'Manrope',sans-serif;display:flex;flex-direction:column">
+          <div style="flex:1;padding:74px 22px 0;display:flex;flex-direction:column;gap:22px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:center;gap:12px">
+                <img src="assets/logo.jpg" alt="SH" style="width:42px;height:42px;border-radius:11px">
+                <span style="font-family:'Marcellus',serif;font-size:19px;letter-spacing:1px;color:#E8DDC4">SH Barbería</span>
+              </div>
+              <div style="width:42px;height:42px;border-radius:50%;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a5 5 0 0 0-5 5v3l-1.5 2.5h13L14 10V7a5 5 0 0 0-5-5Z" stroke="#C9A45C" stroke-width="1.4" stroke-linejoin="round"></path><path d="M7.5 15a1.5 1.5 0 0 0 3 0" stroke="#C9A45C" stroke-width="1.4"></path></svg>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:15px;color:#8FA69F">Buenas tardes,</span>
+              <span style="font-family:'Marcellus',serif;font-size:30px;color:#F4EFE3">Carlos Mendoza</span>
+            </div>
+            <div style="background:linear-gradient(135deg,#143732,#0E2A27);border:1px solid rgba(212,175,110,0.35);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#D8BC82">Tarjeta de fidelidad</span>
+                <span style="font-family:'Marcellus',serif;font-size:18px;color:#E6C988">7 / 10</span>
+              </div>
+              <div style="display:flex;gap:8px">
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:24px;height:24px;border-radius:50%;border:1.5px dashed rgba(212,175,110,0.4)"></div>
+                <div style="width:24px;height:24px;border-radius:50%;border:1.5px dashed rgba(212,175,110,0.4)"></div>
+                <div style="width:24px;height:24px;border-radius:50%;border:1.5px dashed rgba(212,175,110,0.4)"></div>
+              </div>
+              <span style="font-size:13px;color:#A9BDB6">Te faltan <strong style="color:#E6C988">3 visitas</strong> para tu corte gratis</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8FA69F">Próxima cita</span>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:16px;display:flex;align-items:center;gap:16px">
+                <div style="width:54px;height:58px;border-radius:14px;background:#0B2422;border:1px solid rgba(212,175,110,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#D8BC82">Jun</span>
+                  <span style="font-family:'Marcellus',serif;font-size:22px;color:#F4EFE3;line-height:1">14</span>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                  <span style="font-size:16px;font-weight:700;color:#F4EFE3">Corte + Barba</span>
+                  <span style="font-size:13px;color:#8FA69F">Andrés Rivera · 5:30 PM</span>
+                </div>
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#C9A45C" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#C9A45C,#A8843D);border-radius:16px;padding:17px;text-align:center;font-size:16px;font-weight:800;color:#0B2422;letter-spacing:0.3px;box-shadow:0 10px 28px rgba(201,164,92,0.25)">Agendar nueva cita</div>
+          </div>
+          <div style="display:flex;border-top:1px solid rgba(255,255,255,0.07);background:#0A1F1E;padding:12px 8px 30px">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 9.5 10 3l7 6.5V17h-5v-4.5H8V17H3V9.5Z" stroke="#E6C988" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+              <span style="font-size:11px;font-weight:700;color:#E6C988">Inicio</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2.5" stroke="#5E776F" stroke-width="1.5"></rect><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="#5E776F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              <span style="font-size:11px;font-weight:600;color:#5E776F">Citas</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="m10 2.5 2.2 4.6 5 .7-3.6 3.5.9 5L10 13.9l-4.5 2.4.9-5L2.8 7.8l5-.7L10 2.5Z" stroke="#5E776F" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+              <span style="font-size:11px;font-weight:600;color:#5E776F">Puntos</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3.5" stroke="#5E776F" stroke-width="1.5"></circle><path d="M3.5 17.5c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke="#5E776F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              <span style="font-size:11px;font-weight:600;color:#5E776F">Perfil</span>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ─── Pantalla: Paso 1 Servicio ─── -->
+    <div data-screen-label="Cliente: Agendar paso 1 servicio" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Agendar · Paso 1 — Servicio</div>
+      <x-import component="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="min-height:100%;background:#0B2422;color:#F2EDE2;font-family:'Manrope',sans-serif;display:flex;flex-direction:column">
+          <div style="flex:1;padding:74px 22px 0;display:flex;flex-direction:column;gap:22px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="width:40px;height:40px;border-radius:50%;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center">
+                <svg width="9" height="15" viewBox="0 0 9 15" fill="none"><path d="M8 1 1.5 7.5 8 14" stroke="#C9A45C" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </div>
+              <span style="font-family:'Marcellus',serif;font-size:22px;color:#F4EFE3">Agendar cita</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:6px">
+                <div style="flex:1;height:4px;border-radius:99px;background:#C9A45C"></div>
+                <div style="flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,0.1)"></div>
+                <div style="flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,0.1)"></div>
+              </div>
+              <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#D8BC82">Paso 1 de 3 · Elige tu servicio</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;display:flex;align-items:center;gap:16px">
+                <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+                  <span style="font-size:17px;font-weight:700;color:#F4EFE3">Corte</span>
+                  <span style="font-size:13px;color:#8FA69F">45 min · Clásico o degradado</span>
+                </div>
+                <span style="font-family:'Marcellus',serif;font-size:22px;color:#E6C988">$200</span>
+                <div style="width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2)"></div>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;display:flex;align-items:center;gap:16px">
+                <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+                  <span style="font-size:17px;font-weight:700;color:#F4EFE3">Barba</span>
+                  <span style="font-size:13px;color:#8FA69F">30 min · Perfilado y toalla caliente</span>
+                </div>
+                <span style="font-family:'Marcellus',serif;font-size:22px;color:#E6C988">$100</span>
+                <div style="width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2)"></div>
+              </div>
+              <div style="background:linear-gradient(135deg,#16403A,#11332F);border:1.5px solid #C9A45C;border-radius:18px;padding:20px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 24px rgba(201,164,92,0.12)">
+                <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="font-size:17px;font-weight:700;color:#F4EFE3">Corte + Barba</span>
+                    <span style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#0B2422;background:#C9A45C;border-radius:99px;padding:3px 8px">Ahorra $20</span>
+                  </div>
+                  <span style="font-size:13px;color:#A9BDB6">75 min · La experiencia completa</span>
+                </div>
+                <span style="font-family:'Marcellus',serif;font-size:22px;color:#E6C988">$280</span>
+                <div style="width:24px;height:24px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:0 22px 44px">
+            <div style="background:linear-gradient(135deg,#C9A45C,#A8843D);border-radius:16px;padding:17px;text-align:center;font-size:16px;font-weight:800;color:#0B2422;box-shadow:0 10px 28px rgba(201,164,92,0.25)">Continuar</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ─── Pantalla: Paso 2 Barbero ─── -->
+    <div data-screen-label="Cliente: Agendar paso 2 barbero" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Agendar · Paso 2 — Barbero</div>
+      <x-import component="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="min-height:100%;background:#0B2422;color:#F2EDE2;font-family:'Manrope',sans-serif;display:flex;flex-direction:column">
+          <div style="flex:1;padding:74px 22px 0;display:flex;flex-direction:column;gap:22px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="width:40px;height:40px;border-radius:50%;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center">
+                <svg width="9" height="15" viewBox="0 0 9 15" fill="none"><path d="M8 1 1.5 7.5 8 14" stroke="#C9A45C" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </div>
+              <span style="font-family:'Marcellus',serif;font-size:22px;color:#F4EFE3">Agendar cita</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:6px">
+                <div style="flex:1;height:4px;border-radius:99px;background:#C9A45C"></div>
+                <div style="flex:1;height:4px;border-radius:99px;background:#C9A45C"></div>
+                <div style="flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,0.1)"></div>
+              </div>
+              <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#D8BC82">Paso 2 de 3 · Elige a tu barbero</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="background:#11332F;border:1px dashed rgba(212,175,110,0.4);border-radius:16px;padding:15px 18px;display:flex;align-items:center;gap:12px">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="m10 2.5 2.2 4.6 5 .7-3.6 3.5.9 5L10 13.9l-4.5 2.4.9-5L2.8 7.8l5-.7L10 2.5Z" stroke="#C9A45C" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+                <span style="font-size:14px;font-weight:600;color:#D8BC82">Cualquier barbero disponible</span>
+              </div>
+              <div style="background:linear-gradient(135deg,#16403A,#11332F);border:1.5px solid #C9A45C;border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 24px rgba(201,164,92,0.12)">
+                <div style="width:52px;height:52px;border-radius:50%;background:#0B2422;border:1px solid rgba(212,175,110,0.4);display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:18px;color:#E6C988">AR</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                  <span style="font-size:16px;font-weight:700;color:#F4EFE3">Andrés Rivera</span>
+                  <span style="font-size:13px;color:#A9BDB6">Degradados · ★ 4.9</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8FA69F">Hoy desde</span>
+                  <span style="font-size:14px;font-weight:800;color:#E6C988">4:30 PM</span>
+                </div>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px">
+                <div style="width:52px;height:52px;border-radius:50%;background:#0B2422;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:18px;color:#8FA69F">MS</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                  <span style="font-size:16px;font-weight:700;color:#F4EFE3">Miguel Soto</span>
+                  <span style="font-size:13px;color:#8FA69F">Barba y navaja · ★ 4.8</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#5E776F">Hoy desde</span>
+                  <span style="font-size:14px;font-weight:700;color:#8FA69F">6:15 PM</span>
+                </div>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px">
+                <div style="width:52px;height:52px;border-radius:50%;background:#0B2422;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:18px;color:#8FA69F">SC</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                  <span style="font-size:16px;font-weight:700;color:#F4EFE3">Sebastián Cruz</span>
+                  <span style="font-size:13px;color:#8FA69F">Corte clásico · ★ 4.9</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#5E776F">Mañana</span>
+                  <span style="font-size:14px;font-weight:700;color:#8FA69F">10:00 AM</span>
+                </div>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px">
+                <div style="width:52px;height:52px;border-radius:50%;background:#0B2422;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:18px;color:#8FA69F">DH</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                  <span style="font-size:16px;font-weight:700;color:#F4EFE3">Daniel Herrera</span>
+                  <span style="font-size:13px;color:#8FA69F">Diseños y color · ★ 4.7</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#5E776F">Hoy desde</span>
+                  <span style="font-size:14px;font-weight:700;color:#8FA69F">7:00 PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:0 22px 44px">
+            <div style="background:linear-gradient(135deg,#C9A45C,#A8843D);border-radius:16px;padding:17px;text-align:center;font-size:16px;font-weight:800;color:#0B2422;box-shadow:0 10px 28px rgba(201,164,92,0.25)">Continuar</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ─── Pantalla: Paso 3 Fecha y hora ─── -->
+    <div data-screen-label="Cliente: Agendar paso 3 fecha y hora" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Agendar · Paso 3 — Fecha y hora</div>
+      <x-import component="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="min-height:100%;background:#0B2422;color:#F2EDE2;font-family:'Manrope',sans-serif;display:flex;flex-direction:column">
+          <div style="flex:1;padding:74px 22px 0;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="width:40px;height:40px;border-radius:50%;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center">
+                <svg width="9" height="15" viewBox="0 0 9 15" fill="none"><path d="M8 1 1.5 7.5 8 14" stroke="#C9A45C" stroke-width="1.8" stroke-linecap="round"></path></svg>
+              </div>
+              <span style="font-family:'Marcellus',serif;font-size:22px;color:#F4EFE3">Agendar cita</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:6px">
+                <div style="flex:1;height:4px;border-radius:99px;background:#C9A45C"></div>
+                <div style="flex:1;height:4px;border-radius:99px;background:#C9A45C"></div>
+                <div style="flex:1;height:4px;border-radius:99px;background:#C9A45C"></div>
+              </div>
+              <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#D8BC82">Paso 3 de 3 · Fecha y hora</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-family:'Marcellus',serif;font-size:18px;color:#E8DDC4">Junio 2026</span>
+              <div style="display:flex;gap:8px">
+                <div style="width:32px;height:32px;border-radius:50%;background:#11332F;display:flex;align-items:center;justify-content:center"><svg width="7" height="12" viewBox="0 0 8 14" fill="none"><path d="M7 1 1 7l6 6" stroke="#8FA69F" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+                <div style="width:32px;height:32px;border-radius:50%;background:#11332F;display:flex;align-items:center;justify-content:center"><svg width="7" height="12" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#C9A45C" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;background:#11332F;border:1px solid rgba(255,255,255,0.07)"><span style="font-size:11px;font-weight:600;color:#5E776F">Lun</span><span style="font-size:16px;font-weight:700;color:#8FA69F">8</span></div>
+              <div style="flex:1;border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;background:#11332F;border:1px solid rgba(255,255,255,0.07)"><span style="font-size:11px;font-weight:600;color:#5E776F">Mar</span><span style="font-size:16px;font-weight:700;color:#8FA69F">9</span></div>
+              <div style="flex:1;border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;background:linear-gradient(135deg,#C9A45C,#A8843D);box-shadow:0 6px 18px rgba(201,164,92,0.3)"><span style="font-size:11px;font-weight:800;color:#0B2422">Mié</span><span style="font-size:16px;font-weight:800;color:#0B2422">10</span></div>
+              <div style="flex:1;border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;background:#11332F;border:1px solid rgba(255,255,255,0.07)"><span style="font-size:11px;font-weight:600;color:#5E776F">Jue</span><span style="font-size:16px;font-weight:700;color:#8FA69F">11</span></div>
+              <div style="flex:1;border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;background:#11332F;border:1px solid rgba(255,255,255,0.07)"><span style="font-size:11px;font-weight:600;color:#5E776F">Vie</span><span style="font-size:16px;font-weight:700;color:#8FA69F">12</span></div>
+              <div style="flex:1;border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;background:#11332F;border:1px solid rgba(255,255,255,0.07)"><span style="font-size:11px;font-weight:600;color:#5E776F">Sáb</span><span style="font-size:16px;font-weight:700;color:#8FA69F">13</span></div>
+              <div style="flex:1;border-radius:14px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;background:#0E2A27;border:1px solid rgba(255,255,255,0.04)"><span style="font-size:11px;font-weight:600;color:#3E544D">Dom</span><span style="font-size:16px;font-weight:700;color:#3E544D">14</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8FA69F">Mañana</span>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#11332F;border:1px solid rgba(255,255,255,0.07);color:#C7D5CF">10:00</div>
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#11332F;border:1px solid rgba(255,255,255,0.07);color:#C7D5CF">10:45</div>
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#0E2A27;border:1px solid rgba(255,255,255,0.04);color:#3E544D;text-decoration:line-through">11:30</div>
+              </div>
+              <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8FA69F">Tarde</span>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#11332F;border:1px solid rgba(255,255,255,0.07);color:#C7D5CF">16:00</div>
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#0E2A27;border:1px solid rgba(255,255,255,0.04);color:#3E544D;text-decoration:line-through">16:45</div>
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:800;background:linear-gradient(135deg,#C9A45C,#A8843D);color:#0B2422;box-shadow:0 6px 18px rgba(201,164,92,0.3)">17:30</div>
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#11332F;border:1px solid rgba(255,255,255,0.07);color:#C7D5CF">18:15</div>
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#11332F;border:1px solid rgba(255,255,255,0.07);color:#C7D5CF">19:00</div>
+                <div style="border-radius:12px;padding:12px 0;text-align:center;font-size:14px;font-weight:700;background:#0E2A27;border:1px solid rgba(255,255,255,0.04);color:#3E544D;text-decoration:line-through">19:45</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:14px 22px 44px;display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(255,255,255,0.07);background:#0A1F1E">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:13px;color:#8FA69F">Corte + Barba · Andrés R. · Mié 10, 17:30</span>
+              <span style="font-family:'Marcellus',serif;font-size:19px;color:#E6C988">$280</span>
+            </div>
+            <div style="background:linear-gradient(135deg,#C9A45C,#A8843D);border-radius:16px;padding:17px;text-align:center;font-size:16px;font-weight:800;color:#0B2422;box-shadow:0 10px 28px rgba(201,164,92,0.25)">Confirmar cita</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ─── Pantalla: Confirmación ─── -->
+    <div data-screen-label="Cliente: Confirmación de cita" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Confirmación</div>
+      <x-import component="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="min-height:100%;background:#0B2422;color:#F2EDE2;font-family:'Manrope',sans-serif;display:flex;flex-direction:column">
+          <div style="flex:1;padding:120px 26px 0;display:flex;flex-direction:column;align-items:center;gap:24px">
+            <div style="width:92px;height:92px;border-radius:50%;background:linear-gradient(135deg,#C9A45C,#A8843D);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 48px rgba(201,164,92,0.35)">
+              <svg width="38" height="30" viewBox="0 0 38 30" fill="none"><path d="M3 15.5 13.5 26 35 4" stroke="#0B2422" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+              <span style="font-family:'Marcellus',serif;font-size:30px;color:#F4EFE3">¡Cita confirmada!</span>
+              <span style="font-size:14px;color:#8FA69F;text-align:center">Te esperamos en SH Barbería</span>
+            </div>
+            <div style="width:100%;background:#11332F;border:1px solid rgba(212,175,110,0.25);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:13px;color:#8FA69F">Servicio</span>
+                <span style="font-size:15px;font-weight:700;color:#F4EFE3">Corte + Barba</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:13px;color:#8FA69F">Barbero</span>
+                <span style="font-size:15px;font-weight:700;color:#F4EFE3">Andrés Rivera</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:13px;color:#8FA69F">Fecha</span>
+                <span style="font-size:15px;font-weight:700;color:#F4EFE3">Miércoles 10 de junio</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:13px;color:#8FA69F">Hora</span>
+                <span style="font-size:15px;font-weight:700;color:#F4EFE3">5:30 PM</span>
+              </div>
+              <div style="height:1px;background:rgba(255,255,255,0.07)"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:13px;color:#8FA69F">Total</span>
+                <span style="font-family:'Marcellus',serif;font-size:24px;color:#E6C988">$280</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:rgba(201,164,92,0.12);border:1px solid rgba(212,175,110,0.3);border-radius:99px;padding:10px 20px">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="m10 2.5 2.2 4.6 5 .7-3.6 3.5.9 5L10 13.9l-4.5 2.4.9-5L2.8 7.8l5-.7L10 2.5Z" fill="#C9A45C"></path></svg>
+              <span style="font-size:13px;font-weight:700;color:#E6C988">+1 punto al completar tu visita</span>
+            </div>
+          </div>
+          <div style="padding:0 22px 44px;display:flex;flex-direction:column;gap:12px">
+            <div style="background:linear-gradient(135deg,#C9A45C,#A8843D);border-radius:16px;padding:16px;text-align:center;font-size:15px;font-weight:800;color:#0B2422">Añadir al calendario</div>
+            <div style="border:1px solid rgba(212,175,110,0.4);border-radius:16px;padding:16px;text-align:center;font-size:15px;font-weight:700;color:#D8BC82">Volver al inicio</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ─── Pantalla: Mis puntos ─── -->
+    <div data-screen-label="Cliente: Mis puntos" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Mis puntos</div>
+      <x-import component="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+        <div style="min-height:100%;background:#0B2422;color:#F2EDE2;font-family:'Manrope',sans-serif;display:flex;flex-direction:column">
+          <div style="flex:1;padding:74px 22px 0;display:flex;flex-direction:column;gap:22px">
+            <span style="font-family:'Marcellus',serif;font-size:26px;color:#F4EFE3">Mis puntos</span>
+            <div style="background:linear-gradient(150deg,#143732,#0E2A27);border:1.5px solid rgba(212,175,110,0.45);border-radius:24px;padding:26px;display:flex;flex-direction:column;align-items:center;gap:18px;box-shadow:0 16px 48px rgba(0,0,0,0.35)">
+              <img src="assets/logo.jpg" alt="SH" style="width:56px;height:56px;border-radius:14px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                <span style="font-family:'Marcellus',serif;font-size:44px;color:#E6C988;line-height:1">7</span>
+                <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8FA69F">de 10 visitas</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
+                <div style="width:36px;height:36px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="14" height="11" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="14" height="11" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="14" height="11" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="14" height="11" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="14" height="11" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="14" height="11" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:36px;height:36px;border-radius:50%;background:#C9A45C;display:flex;align-items:center;justify-content:center"><svg width="14" height="11" viewBox="0 0 11 9" fill="none"><path d="M1 4.5 4 7.5 10 1" stroke="#0B2422" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+                <div style="width:36px;height:36px;border-radius:50%;border:1.5px dashed rgba(212,175,110,0.4)"></div>
+                <div style="width:36px;height:36px;border-radius:50%;border:1.5px dashed rgba(212,175,110,0.4)"></div>
+                <div style="width:36px;height:36px;border-radius:50%;border:1.5px dashed rgba(212,175,110,0.4);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 11.5 5 5l3 3.5L11 4l3 7.5H2Z" stroke="#C9A45C" stroke-width="1.3" stroke-linejoin="round"></path></svg></div>
+              </div>
+              <span style="font-size:13px;color:#A9BDB6;text-align:center">Cada visita suma <strong style="color:#E6C988">1 punto</strong>. A las 10, tu corte es <strong style="color:#E6C988">gratis</strong>.</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8FA69F">Historial</span>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:15px 18px;display:flex;align-items:center;gap:12px">
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:14px;font-weight:700;color:#F4EFE3">Corte + Barba · Andrés R.</span>
+                  <span style="font-size:12px;color:#8FA69F">28 de mayo, 2026</span>
+                </div>
+                <span style="font-size:13px;font-weight:800;color:#E6C988">+1 pt</span>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:15px 18px;display:flex;align-items:center;gap:12px">
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:14px;font-weight:700;color:#F4EFE3">Corte · Miguel S.</span>
+                  <span style="font-size:12px;color:#8FA69F">9 de mayo, 2026</span>
+                </div>
+                <span style="font-size:13px;font-weight:800;color:#E6C988">+1 pt</span>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:15px 18px;display:flex;align-items:center;gap:12px">
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:14px;font-weight:700;color:#F4EFE3">Corte gratis canjeado</span>
+                  <span style="font-size:12px;color:#8FA69F">17 de abril, 2026</span>
+                </div>
+                <span style="font-size:13px;font-weight:800;color:#D8BC82">−10 pts</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;border-top:1px solid rgba(255,255,255,0.07);background:#0A1F1E;padding:12px 8px 30px">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 9.5 10 3l7 6.5V17h-5v-4.5H8V17H3V9.5Z" stroke="#5E776F" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+              <span style="font-size:11px;font-weight:600;color:#5E776F">Inicio</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2.5" stroke="#5E776F" stroke-width="1.5"></rect><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="#5E776F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              <span style="font-size:11px;font-weight:600;color:#5E776F">Citas</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="m10 2.5 2.2 4.6 5 .7-3.6 3.5.9 5L10 13.9l-4.5 2.4.9-5L2.8 7.8l5-.7L10 2.5Z" fill="#E6C988"></path></svg>
+              <span style="font-size:11px;font-weight:700;color:#E6C988">Puntos</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3.5" stroke="#5E776F" stroke-width="1.5"></circle><path d="M3.5 17.5c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke="#5E776F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              <span style="font-size:11px;font-weight:600;color:#5E776F">Perfil</span>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+  </div>
+
+  <!-- ════════════ SECCIÓN 2 · PANEL DEL BARBERO ════════════ -->
+  <div data-screen-label="Sección: Panel del barbero" style="display:flex;align-items:center;gap:16px;margin:96px 0 40px">
+    <div style="font-family:'Marcellus',serif;font-size:24px;color:#D8BC82;letter-spacing:1.5px">02 · Panel del barbero</div>
+    <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(201,164,92,0.45),transparent)"></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:64px">
+
+    <!-- ─── Barbero: Agenda del día ─── -->
+    <div data-screen-label="Barbero: Agenda del día" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Agenda del día</div>
+      <x-import component="ChromeWindow" from="./browser-window.jsx" width="{{ 1340 }}" height="{{ 800 }}" url="shbarberia.app/barbero/agenda" hint-size="1340px,800px">
+        <div style="display:flex;height:100%;background:#0B2422;font-family:'Manrope',sans-serif;color:#F2EDE2">
+          <div style="width:236px;background:#0A1F1E;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;padding:24px 16px">
+            <div style="display:flex;align-items:center;gap:12px;padding:0 8px 24px">
+              <img src="assets/logo.jpg" alt="SH" style="width:40px;height:40px;border-radius:10px">
+              <span style="font-family:'Marcellus',serif;font-size:17px;letter-spacing:0.5px;color:#E8DDC4">SH Barbería</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:rgba(201,164,92,0.14);border:1px solid rgba(212,175,110,0.3)">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2.5" stroke="#E6C988" stroke-width="1.5"></rect><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="#E6C988" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <span style="font-size:14px;font-weight:700;color:#E6C988">Mi agenda</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#8FA69F" stroke-width="1.5"></circle><path d="M10 5.5V10l3 2" stroke="#8FA69F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <span style="font-size:14px;font-weight:600;color:#8FA69F">Horarios</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3.5" stroke="#8FA69F" stroke-width="1.5"></circle><path d="M3.5 17.5c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke="#8FA69F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <span style="font-size:14px;font-weight:600;color:#8FA69F">Mis clientes</span>
+              </div>
+            </div>
+            <div style="margin-top:auto;display:flex;align-items:center;gap:12px;padding:12px 8px;border-top:1px solid rgba(255,255,255,0.06)">
+              <div style="width:38px;height:38px;border-radius:50%;background:#11332F;border:1px solid rgba(212,175,110,0.4);display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:14px;color:#E6C988">AR</div>
+              <div style="display:flex;flex-direction:column;gap:1px">
+                <span style="font-size:13px;font-weight:700;color:#F4EFE3">Andrés Rivera</span>
+                <span style="font-size:11px;color:#5E776F">Barbero</span>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;padding:28px 32px;display:flex;flex-direction:column;gap:22px;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:16px">
+              <div style="display:flex;flex-direction:column;gap:3px;flex:1">
+                <span style="font-family:'Marcellus',serif;font-size:26px;color:#F4EFE3">Miércoles 10 de junio</span>
+                <span style="font-size:13px;color:#8FA69F">6 citas · 1 bloqueo · 9:00 AM – 8:00 PM</span>
+              </div>
+              <div style="display:flex;gap:8px">
+                <div style="width:38px;height:38px;border-radius:12px;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center"><svg width="8" height="13" viewBox="0 0 8 14" fill="none"><path d="M7 1 1 7l6 6" stroke="#8FA69F" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+                <div style="padding:0 18px;height:38px;border-radius:12px;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;font-size:13px;font-weight:700;color:#C7D5CF">Hoy</div>
+                <div style="width:38px;height:38px;border-radius:12px;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center"><svg width="8" height="13" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#8FA69F" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:0 20px;height:42px;border-radius:12px;border:1.5px solid #C9A45C;color:#E6C988;font-size:14px;font-weight:700">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="9" rx="2" stroke="#E6C988" stroke-width="1.5"></rect><path d="M5 5V3.5a3 3 0 0 1 6 0V5" stroke="#E6C988" stroke-width="1.5"></path></svg>
+                <span>Bloquear horario</span>
+              </div>
+            </div>
+            <div style="flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 18px;align-content:start">
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-left:none;border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:18px">
+                <div style="display:flex;flex-direction:column;align-items:center;width:64px">
+                  <span style="font-size:16px;font-weight:800;color:#F4EFE3">9:30</span>
+                  <span style="font-size:11px;color:#5E776F">45 min</span>
+                </div>
+                <div style="width:1px;height:38px;background:rgba(212,175,110,0.35)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:15px;font-weight:700;color:#F4EFE3">Jorge Lara</span>
+                  <span style="font-size:13px;color:#8FA69F">Corte · $200</span>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#7FBFA0;background:rgba(127,191,160,0.12);border-radius:99px;padding:5px 12px">Completada</span>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:18px">
+                <div style="display:flex;flex-direction:column;align-items:center;width:64px">
+                  <span style="font-size:16px;font-weight:800;color:#F4EFE3">10:30</span>
+                  <span style="font-size:11px;color:#5E776F">30 min</span>
+                </div>
+                <div style="width:1px;height:38px;background:rgba(212,175,110,0.35)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:15px;font-weight:700;color:#F4EFE3">Raúl Domínguez</span>
+                  <span style="font-size:13px;color:#8FA69F">Barba · $100</span>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#7FBFA0;background:rgba(127,191,160,0.12);border-radius:99px;padding:5px 12px">Completada</span>
+              </div>
+              <div style="background:linear-gradient(135deg,#16403A,#11332F);border:1.5px solid #C9A45C;border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:18px;box-shadow:0 8px 24px rgba(201,164,92,0.1)">
+                <div style="display:flex;flex-direction:column;align-items:center;width:64px">
+                  <span style="font-size:16px;font-weight:800;color:#E6C988">11:15</span>
+                  <span style="font-size:11px;color:#8FA69F">75 min</span>
+                </div>
+                <div style="width:1px;height:38px;background:rgba(212,175,110,0.5)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:15px;font-weight:700;color:#F4EFE3">Emilio Vega</span>
+                  <span style="font-size:13px;color:#A9BDB6">Corte + Barba · $280</span>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#0B2422;background:#C9A45C;border-radius:99px;padding:5px 12px">En curso</span>
+              </div>
+              <div style="border:1.5px dashed rgba(212,175,110,0.4);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:18px;background:repeating-linear-gradient(135deg,rgba(201,164,92,0.05),rgba(201,164,92,0.05) 8px,transparent 8px,transparent 16px)">
+                <div style="display:flex;flex-direction:column;align-items:center;width:64px">
+                  <span style="font-size:16px;font-weight:800;color:#D8BC82">14:00</span>
+                  <span style="font-size:11px;color:#8FA69F">60 min</span>
+                </div>
+                <div style="width:1px;height:38px;background:rgba(212,175,110,0.35)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:15px;font-weight:700;color:#D8BC82">Horario bloqueado</span>
+                  <span style="font-size:13px;color:#8FA69F">Almuerzo</span>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="9" rx="2" stroke="#D8BC82" stroke-width="1.5"></rect><path d="M5 5V3.5a3 3 0 0 1 6 0V5" stroke="#D8BC82" stroke-width="1.5"></path></svg>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:18px">
+                <div style="display:flex;flex-direction:column;align-items:center;width:64px">
+                  <span style="font-size:16px;font-weight:800;color:#F4EFE3">16:00</span>
+                  <span style="font-size:11px;color:#5E776F">45 min</span>
+                </div>
+                <div style="width:1px;height:38px;background:rgba(212,175,110,0.35)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:15px;font-weight:700;color:#F4EFE3">Tomás Aguilar</span>
+                  <span style="font-size:13px;color:#8FA69F">Corte · $200</span>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#D8BC82;background:rgba(201,164,92,0.12);border-radius:99px;padding:5px 12px">Confirmada</span>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:18px">
+                <div style="display:flex;flex-direction:column;align-items:center;width:64px">
+                  <span style="font-size:16px;font-weight:800;color:#F4EFE3">17:30</span>
+                  <span style="font-size:11px;color:#5E776F">75 min</span>
+                </div>
+                <div style="width:1px;height:38px;background:rgba(212,175,110,0.35)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:15px;font-weight:700;color:#F4EFE3">Carlos Mendoza</span>
+                  <span style="font-size:13px;color:#8FA69F">Corte + Barba · $280 · ★ Cliente frecuente</span>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#D8BC82;background:rgba(201,164,92,0.12);border-radius:99px;padding:5px 12px">Confirmada</span>
+              </div>
+              <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:18px;opacity:0.55">
+                <div style="display:flex;flex-direction:column;align-items:center;width:64px">
+                  <span style="font-size:16px;font-weight:800;color:#F4EFE3;text-decoration:line-through">19:00</span>
+                  <span style="font-size:11px;color:#5E776F">30 min</span>
+                </div>
+                <div style="width:1px;height:38px;background:rgba(255,255,255,0.1)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:15px;font-weight:700;color:#F4EFE3">Iván Robles</span>
+                  <span style="font-size:13px;color:#8FA69F">Barba · $100</span>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#C98A7E;background:rgba(201,138,126,0.12);border-radius:99px;padding:5px 12px">Cancelada</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ─── Barbero: Bloquear horarios ─── -->
+    <div data-screen-label="Barbero: Bloquear horarios" style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Bloquear horarios · Vista semanal</div>
+      <x-import component="ChromeWindow" from="./browser-window.jsx" width="{{ 1340 }}" height="{{ 800 }}" url="shbarberia.app/barbero/horarios" hint-size="1340px,800px">
+        <div style="display:flex;height:100%;background:#0B2422;font-family:'Manrope',sans-serif;color:#F2EDE2">
+          <div style="width:236px;background:#0A1F1E;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;padding:24px 16px">
+            <div style="display:flex;align-items:center;gap:12px;padding:0 8px 24px">
+              <img src="assets/logo.jpg" alt="SH" style="width:40px;height:40px;border-radius:10px">
+              <span style="font-family:'Marcellus',serif;font-size:17px;letter-spacing:0.5px;color:#E8DDC4">SH Barbería</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2.5" stroke="#8FA69F" stroke-width="1.5"></rect><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="#8FA69F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <span style="font-size:14px;font-weight:600;color:#8FA69F">Mi agenda</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:rgba(201,164,92,0.14);border:1px solid rgba(212,175,110,0.3)">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#E6C988" stroke-width="1.5"></circle><path d="M10 5.5V10l3 2" stroke="#E6C988" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <span style="font-size:14px;font-weight:700;color:#E6C988">Horarios</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3.5" stroke="#8FA69F" stroke-width="1.5"></circle><path d="M3.5 17.5c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke="#8FA69F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <span style="font-size:14px;font-weight:600;color:#8FA69F">Mis clientes</span>
+              </div>
+            </div>
+            <div style="margin-top:auto;display:flex;align-items:center;gap:12px;padding:12px 8px;border-top:1px solid rgba(255,255,255,0.06)">
+              <div style="width:38px;height:38px;border-radius:50%;background:#11332F;border:1px solid rgba(212,175,110,0.4);display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:14px;color:#E6C988">AR</div>
+              <div style="display:flex;flex-direction:column;gap:1px">
+                <span style="font-size:13px;font-weight:700;color:#F4EFE3">Andrés Rivera</span>
+                <span style="font-size:11px;color:#5E776F">Barbero</span>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;padding:28px 32px;display:flex;gap:28px;overflow:hidden">
+            <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <div style="display:flex;flex-direction:column;gap:3px">
+                  <span style="font-family:'Marcellus',serif;font-size:26px;color:#F4EFE3">Semana del 8 al 13 de junio</span>
+                  <span style="font-size:13px;color:#8FA69F">Toca un día para agregar o quitar bloqueos</span>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <div style="width:38px;height:38px;border-radius:12px;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center"><svg width="8" height="13" viewBox="0 0 8 14" fill="none"><path d="M7 1 1 7l6 6" stroke="#8FA69F" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+                  <div style="width:38px;height:38px;border-radius:12px;background:#11332F;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center"><svg width="8" height="13" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#8FA69F" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+                </div>
+              </div>
+              <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-content:start">
+                <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font-size:14px;font-weight:800;color:#F4EFE3">Lunes 8</span>
+                    <span style="font-size:11px;color:#5E776F">9:00 – 20:00</span>
+                  </div>
+                  <div style="border:1px dashed rgba(212,175,110,0.4);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#D8BC82;background:repeating-linear-gradient(135deg,rgba(201,164,92,0.06),rgba(201,164,92,0.06) 6px,transparent 6px,transparent 12px)">14:00 – 15:00 · Almuerzo</div>
+                  <span style="font-size:12px;font-weight:700;color:#5E776F">+ Bloquear</span>
+                </div>
+                <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font-size:14px;font-weight:800;color:#F4EFE3">Martes 9</span>
+                    <span style="font-size:11px;color:#5E776F">9:00 – 20:00</span>
+                  </div>
+                  <div style="border:1px dashed rgba(212,175,110,0.4);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#D8BC82;background:repeating-linear-gradient(135deg,rgba(201,164,92,0.06),rgba(201,164,92,0.06) 6px,transparent 6px,transparent 12px)">14:00 – 15:00 · Almuerzo</div>
+                  <span style="font-size:12px;font-weight:700;color:#5E776F">+ Bloquear</span>
+                </div>
+                <div style="background:linear-gradient(135deg,#16403A,#11332F);border:1.5px solid #C9A45C;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 24px rgba(201,164,92,0.1)">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font-size:14px;font-weight:800;color:#E6C988">Miércoles 10 · Hoy</span>
+                    <span style="font-size:11px;color:#8FA69F">9:00 – 20:00</span>
+                  </div>
+                  <div style="border:1px dashed rgba(212,175,110,0.5);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#E6C988;background:repeating-linear-gradient(135deg,rgba(201,164,92,0.1),rgba(201,164,92,0.1) 6px,transparent 6px,transparent 12px)">14:00 – 15:00 · Almuerzo</div>
+                  <div style="border:1px dashed rgba(212,175,110,0.5);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#E6C988;background:repeating-linear-gradient(135deg,rgba(201,164,92,0.1),rgba(201,164,92,0.1) 6px,transparent 6px,transparent 12px)">19:30 – 20:00 · Personal</div>
+                  <span style="font-size:12px;font-weight:700;color:#D8BC82">+ Bloquear</span>
+                </div>
+                <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font-size:14px;font-weight:800;color:#F4EFE3">Jueves 11</span>
+                    <span style="font-size:11px;color:#5E776F">9:00 – 20:00</span>
+                  </div>
+                  <div style="border:1px dashed rgba(212,175,110,0.4);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#D8BC82;background:repeating-linear-gradient(135deg,rgba(201,164,92,0.06),rgba(201,164,92,0.06) 6px,transparent 6px,transparent 12px)">14:00 – 15:00 · Almuerzo</div>
+                  <span style="font-size:12px;font-weight:700;color:#5E776F">+ Bloquear</span>
+                </div>
+                <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font-size:14px;font-weight:800;color:#F4EFE3">Viernes 12</span>
+                    <span style="font-size:11px;color:#5E776F">9:00 – 20:00</span>
+                  </div>
+                  <div style="border:1px dashed rgba(212,175,110,0.4);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#D8BC82;background:repeating-linear-gradient(135deg,rgba(201,164,92,0.06),rgba(201,164,92,0.06) 6px,transparent 6px,transparent 12px)">14:00 – 15:00 · Almuerzo</div>
+                  <span style="font-size:12px;font-weight:700;color:#5E776F">+ Bloquear</span>
+                </div>
+                <div style="background:#0E2A27;border:1px solid rgba(255,255,255,0.04);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font-size:14px;font-weight:800;color:#8FA69F">Sábado 13</span>
+                    <span style="font-size:11px;color:#5E776F">9:00 – 14:00</span>
+                  </div>
+                  <div style="border:1px dashed rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#8FA69F;background:repeating-linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.04) 6px,transparent 6px,transparent 12px)">14:00 – 20:00 · Tarde libre</div>
+                  <span style="font-size:12px;font-weight:700;color:#5E776F">+ Bloquear</span>
+                </div>
+              </div>
+            </div>
+            <div style="width:320px;background:#0A1F1E;border:1px solid rgba(212,175,110,0.25);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:18px;align-self:flex-start">
+              <span style="font-family:'Marcellus',serif;font-size:20px;color:#E8DDC4">Nuevo bloqueo</span>
+              <div style="display:flex;flex-direction:column;gap:7px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Fecha</span>
+                <div style="background:#11332F;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:13px 16px;font-size:14px;font-weight:600;color:#F4EFE3">Miércoles 10 de junio</div>
+              </div>
+              <div style="display:flex;gap:12px">
+                <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Desde</span>
+                  <div style="background:#11332F;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:13px 16px;font-size:14px;font-weight:600;color:#F4EFE3">19:30</div>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Hasta</span>
+                  <div style="background:#11332F;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:13px 16px;font-size:14px;font-weight:600;color:#F4EFE3">20:00</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:7px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Motivo</span>
+                <div style="background:#11332F;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:13px 16px;font-size:14px;font-weight:600;color:#F4EFE3">Personal</div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px;font-weight:600;color:#C7D5CF">Repetir cada semana</span>
+                <div style="width:44px;height:26px;border-radius:99px;background:#C9A45C;display:flex;align-items:center;justify-content:flex-end;padding:3px"><div style="width:20px;height:20px;border-radius:50%;background:#0B2422"></div></div>
+              </div>
+              <div style="background:linear-gradient(135deg,#C9A45C,#A8843D);border-radius:14px;padding:15px;text-align:center;font-size:14px;font-weight:800;color:#0B2422">Bloquear horario</div>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+  </div>
+
+  <!-- ════════════ SECCIÓN 3 · PANEL DEL ADMINISTRADOR ════════════ -->
+  <div data-screen-label="Sección: Panel del administrador" style="display:flex;align-items:center;gap:16px;margin:96px 0 40px">
+    <div style="font-family:'Marcellus',serif;font-size:24px;color:#D8BC82;letter-spacing:1.5px">03 · Panel del administrador</div>
+    <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(201,164,92,0.45),transparent)"></div>
+  </div>
+
+  <div data-screen-label="Admin: Resumen del día" style="display:flex;flex-direction:column;gap:14px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8FA69F">Resumen del día · Gestión de citas</div>
+    <x-import component="ChromeWindow" from="./browser-window.jsx" width="{{ 1340 }}" height="{{ 860 }}" url="shbarberia.app/admin" hint-size="1340px,860px">
+      <div style="display:flex;height:100%;background:#0B2422;font-family:'Manrope',sans-serif;color:#F2EDE2">
+        <div style="width:236px;background:#0A1F1E;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;padding:24px 16px">
+          <div style="display:flex;align-items:center;gap:12px;padding:0 8px 24px">
+            <img src="assets/logo.jpg" alt="SH" style="width:40px;height:40px;border-radius:10px">
+            <span style="font-family:'Marcellus',serif;font-size:17px;letter-spacing:0.5px;color:#E8DDC4">SH Barbería</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:rgba(201,164,92,0.14);border:1px solid rgba(212,175,110,0.3)">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="3" y="11" width="3.5" height="6" rx="1" fill="#E6C988"></rect><rect x="8.2" y="7" width="3.5" height="10" rx="1" fill="#E6C988"></rect><rect x="13.5" y="3" width="3.5" height="14" rx="1" fill="#E6C988"></rect></svg>
+              <span style="font-size:14px;font-weight:700;color:#E6C988">Resumen</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2.5" stroke="#8FA69F" stroke-width="1.5"></rect><path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="#8FA69F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#8FA69F">Citas</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><circle cx="7" cy="6.5" r="3" stroke="#8FA69F" stroke-width="1.5"></circle><circle cx="14" cy="8" r="2.3" stroke="#8FA69F" stroke-width="1.5"></circle><path d="M2.5 17c.7-2.8 2.6-4.3 4.5-4.3s3.8 1.5 4.5 4.3M12.5 12.6c2 .1 4 1.4 4.8 4.4" stroke="#8FA69F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#8FA69F">Barberos</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="m10 2.5 2.2 4.6 5 .7-3.6 3.5.9 5L10 13.9l-4.5 2.4.9-5L2.8 7.8l5-.7L10 2.5Z" stroke="#8FA69F" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#8FA69F">Fidelidad</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2.5" stroke="#8FA69F" stroke-width="1.5"></circle><path d="M10 2.5v2.3M10 15.2v2.3M2.5 10h2.3M15.2 10h2.3M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M15.3 4.7l-1.6 1.6M6.3 13.7l-1.6 1.6" stroke="#8FA69F" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#8FA69F">Ajustes</span>
+            </div>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;gap:12px;padding:12px 8px;border-top:1px solid rgba(255,255,255,0.06)">
+            <div style="width:38px;height:38px;border-radius:50%;background:#11332F;border:1px solid rgba(212,175,110,0.4);display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:14px;color:#E6C988">SH</div>
+            <div style="display:flex;flex-direction:column;gap:1px">
+              <span style="font-size:13px;font-weight:700;color:#F4EFE3">Salvador H.</span>
+              <span style="font-size:11px;color:#5E776F">Administrador</span>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1;padding:28px 32px;display:flex;flex-direction:column;gap:24px;overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <span style="font-family:'Marcellus',serif;font-size:26px;color:#F4EFE3">Resumen del día</span>
+              <span style="font-size:13px;color:#8FA69F">Miércoles 10 de junio de 2026</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:0 20px;height:42px;border-radius:12px;background:linear-gradient(135deg,#C9A45C,#A8843D);color:#0B2422;font-size:14px;font-weight:800">+ Nueva cita</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+            <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Citas hoy</span>
+              <span style="font-family:'Marcellus',serif;font-size:38px;color:#F4EFE3;line-height:1">18</span>
+              <span style="font-size:12px;color:#7FBFA0">+3 vs. miércoles pasado</span>
+            </div>
+            <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Ingresos estimados</span>
+              <span style="font-family:'Marcellus',serif;font-size:38px;color:#E6C988;line-height:1">$4,280</span>
+              <span style="font-size:12px;color:#7FBFA0">+12% vs. miércoles pasado</span>
+            </div>
+            <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Ocupación</span>
+              <span style="font-family:'Marcellus',serif;font-size:38px;color:#F4EFE3;line-height:1">82%</span>
+              <span style="font-size:12px;color:#8FA69F">De 9:00 AM a 8:00 PM</span>
+            </div>
+            <div style="background:#11332F;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Cortes gratis canjeados</span>
+              <span style="font-family:'Marcellus',serif;font-size:38px;color:#F4EFE3;line-height:1">2</span>
+              <span style="font-size:12px;color:#8FA69F">Programa de fidelidad</span>
+            </div>
+          </div>
+          <div style="flex:1;display:flex;gap:24px;min-height:0">
+            <div style="flex:1.7;background:#0E2A27;border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <span style="font-family:'Marcellus',serif;font-size:19px;color:#E8DDC4">Citas de hoy</span>
+                <span style="font-size:12px;font-weight:700;color:#D8BC82">Ver todas</span>
+              </div>
+              <div style="display:grid;grid-template-columns:70px 1.3fr 1.2fr 1fr 110px;gap:8px;padding:0 14px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#5E776F">
+                <span>Hora</span><span>Cliente</span><span>Servicio</span><span>Barbero</span><span>Estado</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:grid;grid-template-columns:70px 1.3fr 1.2fr 1fr 110px;gap:8px;align-items:center;background:#11332F;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:13px 14px;font-size:13px">
+                  <span style="font-weight:800;color:#F4EFE3">11:15</span>
+                  <span style="font-weight:700;color:#F4EFE3">Emilio Vega</span>
+                  <span style="color:#8FA69F">Corte + Barba</span>
+                  <span style="color:#8FA69F">Andrés R.</span>
+                  <span style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#0B2422;background:#C9A45C;border-radius:99px;padding:4px 10px;text-align:center">En curso</span>
+                </div>
+                <div style="display:grid;grid-template-columns:70px 1.3fr 1.2fr 1fr 110px;gap:8px;align-items:center;background:#11332F;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:13px 14px;font-size:13px">
+                  <span style="font-weight:800;color:#F4EFE3">11:30</span>
+                  <span style="font-weight:700;color:#F4EFE3">Héctor Ponce</span>
+                  <span style="color:#8FA69F">Corte</span>
+                  <span style="color:#8FA69F">Miguel S.</span>
+                  <span style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#0B2422;background:#C9A45C;border-radius:99px;padding:4px 10px;text-align:center">En curso</span>
+                </div>
+                <div style="display:grid;grid-template-columns:70px 1.3fr 1.2fr 1fr 110px;gap:8px;align-items:center;background:#11332F;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:13px 14px;font-size:13px">
+                  <span style="font-weight:800;color:#F4EFE3">12:30</span>
+                  <span style="font-weight:700;color:#F4EFE3">Bruno Salas</span>
+                  <span style="color:#8FA69F">Barba</span>
+                  <span style="color:#8FA69F">Miguel S.</span>
+                  <span style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#D8BC82;background:rgba(201,164,92,0.12);border-radius:99px;padding:4px 10px;text-align:center">Confirmada</span>
+                </div>
+                <div style="display:grid;grid-template-columns:70px 1.3fr 1.2fr 1fr 110px;gap:8px;align-items:center;background:#11332F;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:13px 14px;font-size:13px">
+                  <span style="font-weight:800;color:#F4EFE3">16:00</span>
+                  <span style="font-weight:700;color:#F4EFE3">Tomás Aguilar</span>
+                  <span style="color:#8FA69F">Corte</span>
+                  <span style="color:#8FA69F">Andrés R.</span>
+                  <span style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#D8BC82;background:rgba(201,164,92,0.12);border-radius:99px;padding:4px 10px;text-align:center">Confirmada</span>
+                </div>
+                <div style="display:grid;grid-template-columns:70px 1.3fr 1.2fr 1fr 110px;gap:8px;align-items:center;background:#11332F;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:13px 14px;font-size:13px">
+                  <span style="font-weight:800;color:#F4EFE3">17:30</span>
+                  <span style="font-weight:700;color:#F4EFE3">Carlos Mendoza ★</span>
+                  <span style="color:#8FA69F">Corte + Barba</span>
+                  <span style="color:#8FA69F">Andrés R.</span>
+                  <span style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#D8BC82;background:rgba(201,164,92,0.12);border-radius:99px;padding:4px 10px;text-align:center">Confirmada</span>
+                </div>
+                <div style="display:grid;grid-template-columns:70px 1.3fr 1.2fr 1fr 110px;gap:8px;align-items:center;background:#11332F;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:13px 14px;font-size:13px;opacity:0.55">
+                  <span style="font-weight:800;color:#F4EFE3;text-decoration:line-through">19:00</span>
+                  <span style="font-weight:700;color:#F4EFE3">Iván Robles</span>
+                  <span style="color:#8FA69F">Barba</span>
+                  <span style="color:#8FA69F">Andrés R.</span>
+                  <span style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#C98A7E;background:rgba(201,138,126,0.12);border-radius:99px;padding:4px 10px;text-align:center">Cancelada</span>
+                </div>
+              </div>
+            </div>
+            <div style="flex:1;background:#0E2A27;border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:18px">
+              <span style="font-family:'Marcellus',serif;font-size:19px;color:#E8DDC4">Ocupación por barbero</span>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;font-size:13px">
+                  <span style="font-weight:700;color:#F4EFE3">Andrés Rivera</span>
+                  <span style="font-weight:800;color:#E6C988">92%</span>
+                </div>
+                <div style="height:8px;border-radius:99px;background:rgba(255,255,255,0.07)"><div style="width:92%;height:8px;border-radius:99px;background:linear-gradient(90deg,#C9A45C,#E6C988)"></div></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;font-size:13px">
+                  <span style="font-weight:700;color:#F4EFE3">Miguel Soto</span>
+                  <span style="font-weight:800;color:#E6C988">78%</span>
+                </div>
+                <div style="height:8px;border-radius:99px;background:rgba(255,255,255,0.07)"><div style="width:78%;height:8px;border-radius:99px;background:linear-gradient(90deg,#C9A45C,#E6C988)"></div></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;font-size:13px">
+                  <span style="font-weight:700;color:#F4EFE3">Sebastián Cruz</span>
+                  <span style="font-weight:800;color:#E6C988">71%</span>
+                </div>
+                <div style="height:8px;border-radius:99px;background:rgba(255,255,255,0.07)"><div style="width:71%;height:8px;border-radius:99px;background:linear-gradient(90deg,#C9A45C,#E6C988)"></div></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;font-size:13px">
+                  <span style="font-weight:700;color:#F4EFE3">Daniel Herrera</span>
+                  <span style="font-weight:800;color:#E6C988">64%</span>
+                </div>
+                <div style="height:8px;border-radius:99px;background:rgba(255,255,255,0.07)"><div style="width:64%;height:8px;border-radius:99px;background:linear-gradient(90deg,#C9A45C,#E6C988)"></div></div>
+              </div>
+              <div style="margin-top:auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8FA69F">Fidelidad</span>
+                <span style="font-size:13px;color:#A9BDB6"><strong style="color:#E6C988">34 clientes</strong> a 3 visitas o menos de su corte gratis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-import>
+  </div>
+
+</div>
+</div>
+</x-dc>
+</body>
+</html>
