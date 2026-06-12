@@ -29,7 +29,7 @@ function fmt12(hhmm: string) {
 type ModalState = { mode: 'create'; dow: number } | { mode: 'edit'; schedule: Schedule } | null
 
 export default function AdminSchedule() {
-  const { admin, logoutAdmin } = useAdminAuth()
+  const { logoutAdmin } = useAdminAuth()
   const [schedules, setSchedules] = useState<Schedule[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

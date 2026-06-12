@@ -38,7 +38,7 @@ function avatarColor(id: string) {
 }
 
 export default function AdminClients() {
-  const { admin, logoutAdmin } = useAdminAuth()
+  const { logoutAdmin } = useAdminAuth()
   const [clients, setClients] = useState<Client[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

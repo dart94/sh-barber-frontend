@@ -43,7 +43,6 @@ export default function ProfileScreen() {
 
   const pts = client?.points ?? 0
   const visits = client?.visits ?? 0
-  const progress = Math.min(visits / 10, 1)
 
   return (
     <div className="min-h-screen bg-barber-bg flex flex-col max-w-md mx-auto">

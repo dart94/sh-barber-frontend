@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 type Tab = 'home' | 'appointments' | 'points' | 'profile'
