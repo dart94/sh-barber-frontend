@@ -12,17 +12,18 @@ export default function AdminNav() {
   const { pathname } = useLocation()
 
   return (
-    <div className="flex border-t border-barber-border bg-barber-sidebar px-2 pb-7 pt-3">
+    <div className="flex border-t border-barber-border bg-barber-sidebar px-2 pt-3" style={{ paddingBottom: 'calc(1.75rem + env(safe-area-inset-bottom, 0px))' }}>
       {TABS.map(({ path, label, icon: Icon }) => {
         const active = pathname === path
         return (
           <button
             key={path}
             onClick={() => navigate(path)}
+            aria-current={active ? 'page' : undefined}
             className="flex-1 flex flex-col items-center gap-1"
           >
             <Icon active={active} />
-            <span className={`text-[11px] font-${active ? '700' : '600'} ${active ? 'text-barber-gold-3' : 'text-barber-dim'}`}>
+            <span className={`text-[11px] ${active ? 'font-bold' : 'font-semibold'} ${active ? 'text-barber-gold-3' : 'text-barber-dim'}`}>
               {label}
             </span>
           </button>

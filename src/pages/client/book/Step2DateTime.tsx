@@ -242,9 +242,14 @@ function SlotBtn({ slot, selected, onSelect }: { slot: Slot; selected: boolean; 
   const label = formatTime12(slot.time)
   if (!slot.available) {
     return (
-      <div className="rounded-xl py-3 text-center text-sm font-bold bg-barber-muted border border-barber-border/40 text-barber-dim line-through">
+      <button
+        disabled
+        aria-disabled="true"
+        aria-label="Horario no disponible"
+        className="rounded-xl py-3 text-center text-sm font-bold bg-barber-muted border border-barber-border/40 text-barber-dim line-through cursor-not-allowed"
+      >
         {label}
-      </div>
+      </button>
     )
   }
   return (

@@ -15,16 +15,19 @@ export default function RegisterScreen() {
   }, [phone, navigate])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [pin, setPin] = useState('')
+  const [confirmPin, setConfirmPin] = useState('')
   const { login } = useClientAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (name.trim().length < 2) return
+    if (name.trim().length < 2 || pin.length !== 4) return
+    if (pin !== confirmPin) { setError('Los PINs no coinciden'); return }
     setLoading(true)
     setError('')
 
     try {
-      const { token, client } = await clientRegister(name.trim(), phone)
+      const { token, client } = await clientRegister({ name: name.trim(), phone, pin })
       login(token, client)
       navigate('/', { replace: true })
     } catch (err: unknown) {
@@ -57,10 +60,11 @@ export default function RegisterScreen() {
       {/* Form */}
       <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-bold tracking-widest uppercase text-barber-mute">
+          <label htmlFor="reg-name" className="text-xs font-bold tracking-widest uppercase text-barber-mute">
             Tu nombre
           </label>
           <input
+            id="reg-name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -70,13 +74,45 @@ export default function RegisterScreen() {
           />
         </div>
 
+        <div className="flex flex-col gap-2">
+          <label htmlFor="reg-pin" className="text-xs font-bold tracking-widest uppercase text-barber-mute">
+            PIN de seguridad (4 dígitos)
+          </label>
+          <input
+            id="reg-pin"
+            type="password"
+            inputMode="numeric"
+            maxLength={4}
+            value={pin}
+            onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
+            placeholder="····"
+            className="w-full bg-barber-card border border-barber-border rounded-2xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none focus:border-barber-gold/60 transition-colors"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="reg-pin-confirm" className="text-xs font-bold tracking-widest uppercase text-barber-mute">
+            Confirmar PIN
+          </label>
+          <input
+            id="reg-pin-confirm"
+            type="password"
+            inputMode="numeric"
+            maxLength={4}
+            value={confirmPin}
+            onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, ''))}
+            placeholder="····"
+            className="w-full bg-barber-card border border-barber-border rounded-2xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none focus:border-barber-gold/60 transition-colors"
+          />
+        </div>
+
         {error && (
           <span className="text-sm text-barber-red text-center">{error}</span>
         )}
 
         <button
           type="submit"
-          disabled={loading || name.trim().length < 2}
+          disabled={loading || name.trim().length < 2 || pin.length !== 4 || pin !== confirmPin}
           className="w-full bg-gradient-to-r from-barber-gold to-[#A8843D] rounded-2xl py-4 text-base font-extrabold text-barber-bg shadow-[0_10px_28px_rgba(201,164,92,0.25)] disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 transition-all"
         >
           {loading ? 'Creando cuenta...' : 'Crear cuenta'}

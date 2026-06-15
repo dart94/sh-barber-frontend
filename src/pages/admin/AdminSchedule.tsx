@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { useAdminAuth } from '../../contexts/AdminAuthContext'
-import AdminNav from '../../components/admin/AdminNav'
+import AdminLayout from '../../components/admin/AdminLayout'
 import {
   Schedule,
   getSchedule,
@@ -9,7 +8,6 @@ import {
   adminDeleteSchedule,
 } from '../../lib/api'
 
-// 0=Dom, display order: Lun(1)→Dom(0)
 const DAYS: { dow: number; label: string; short: string }[] = [
   { dow: 1, label: 'Lunes',     short: 'L' },
   { dow: 2, label: 'Martes',    short: 'M' },
@@ -29,7 +27,6 @@ function fmt12(hhmm: string) {
 type ModalState = { mode: 'create'; dow: number } | { mode: 'edit'; schedule: Schedule } | null
 
 export default function AdminSchedule() {
-  const { logoutAdmin } = useAdminAuth()
   const [schedules, setSchedules] = useState<Schedule[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -54,6 +51,20 @@ export default function AdminSchedule() {
       .catch(() => setError('No se pudo cargar los horarios'))
       .finally(() => setLoading(false))
   }, [])
+
+  useEffect(() => {
+    if (!modal) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') { setModal(null); setFormError(null) } }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [modal])
+
+  useEffect(() => {
+    if (!confirmDel) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setConfirmDel(null) }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [confirmDel])
 
   const openCreate = (dow: number) => {
     setOpenTime('09:00')
@@ -117,31 +128,9 @@ export default function AdminSchedule() {
     }
   }
 
-  const activeDays = schedules.filter((s) => s.isActive).length
-
   return (
-    <div className="min-h-screen bg-barber-bg flex flex-col max-w-lg mx-auto">
-
-      {/* Top bar */}
-      <div className="flex items-center justify-between px-5 pt-14 pb-4">
-        <div className="flex items-center gap-3">
-          <img src="/logo.jpg" alt="SH Barbería" className="w-9 h-9 rounded-xl border border-barber-gold/30" />
-          <div className="flex flex-col">
-            <span className="font-serif text-base text-barber-text leading-tight">Horarios</span>
-            <span className="text-[10px] font-bold tracking-widest uppercase text-barber-mute leading-tight">
-              {activeDays} {activeDays === 1 ? 'día activo' : 'días activos'}
-            </span>
-          </div>
-        </div>
-        <button
-          onClick={logoutAdmin}
-          className="w-9 h-9 rounded-full bg-barber-card border border-barber-border flex items-center justify-center"
-        >
-          <LogoutIcon />
-        </button>
-      </div>
-
-      <div className="flex-1 px-5 pb-4 flex flex-col gap-4 overflow-y-auto">
+    <AdminLayout>
+      <div className="px-5 md:px-8 pb-8 pt-4 flex flex-col gap-4 max-w-4xl w-full">
 
         {/* Week strip summary */}
         <div className="flex gap-1.5">
@@ -188,7 +177,6 @@ export default function AdminSchedule() {
                     s ? 'border-barber-border' : 'border-dashed border-barber-border/60'
                   } ${s && !s.isActive ? 'opacity-60' : ''}`}
                 >
-                  {/* Day name */}
                   <div className="w-20 shrink-0">
                     <span className={`text-sm font-bold ${s?.isActive ? 'text-barber-text' : s ? 'text-barber-sub' : 'text-barber-dim'}`}>
                       {label}
@@ -197,23 +185,20 @@ export default function AdminSchedule() {
 
                   {s ? (
                     <>
-                      {/* Hours */}
                       <div className="flex-1 flex items-center gap-1.5">
                         <span className="text-sm font-semibold text-barber-gold-2">{fmt12(s.openTime)}</span>
                         <span className="text-barber-dim text-xs">—</span>
                         <span className="text-sm font-semibold text-barber-gold-2">{fmt12(s.closeTime)}</span>
                       </div>
 
-                      {/* Actions */}
                       <div className="flex items-center gap-1.5 shrink-0">
-                        {/* Toggle */}
                         <button
                           onClick={() => handleToggle(s)}
                           disabled={isToggling}
+                          aria-label={s.isActive ? 'Desactivar día' : 'Activar día'}
                           className={`w-8 h-8 rounded-xl flex items-center justify-center active:scale-90 transition-transform disabled:opacity-50 ${
                             s.isActive ? 'bg-barber-green/10' : 'bg-barber-muted'
                           }`}
-                          title={s.isActive ? 'Desactivar día' : 'Activar día'}
                         >
                           {isToggling ? (
                             <span className="w-3 h-3 border border-barber-sub/40 border-t-barber-sub rounded-full animate-spin block" />
@@ -224,17 +209,17 @@ export default function AdminSchedule() {
                           )}
                         </button>
 
-                        {/* Edit */}
                         <button
                           onClick={() => openEdit(s)}
+                          aria-label="Editar horario"
                           className="w-8 h-8 rounded-xl bg-barber-muted flex items-center justify-center active:scale-90 transition-transform"
                         >
                           <EditIcon />
                         </button>
 
-                        {/* Delete */}
                         <button
                           onClick={() => setConfirmDel(s)}
+                          aria-label="Eliminar horario"
                           className="w-8 h-8 rounded-xl bg-barber-red/10 flex items-center justify-center active:scale-90 transition-transform"
                         >
                           <TrashIcon />
@@ -257,19 +242,16 @@ export default function AdminSchedule() {
             })
           )}
         </div>
-        <div className="h-2" />
       </div>
-
-      <AdminNav />
 
       {/* Create / Edit modal */}
       {modal && (
         <div
           ref={overlayRef}
           onClick={(e) => { if (e.target === overlayRef.current) closeModal() }}
-          className="fixed inset-0 bg-black/60 z-40 flex items-end justify-center"
+          className="fixed inset-0 bg-black/60 z-40 flex items-end md:items-center justify-center"
         >
-          <div className="w-full max-w-lg bg-barber-sidebar border-t border-barber-border rounded-t-3xl px-5 pt-5 pb-10 flex flex-col gap-5 animate-slide-up">
+          <div role="dialog" aria-modal="true" className="w-full max-w-lg bg-barber-sidebar border-t md:border border-barber-border rounded-t-3xl md:rounded-3xl px-5 pt-5 pb-10 md:pb-5 flex flex-col gap-5 animate-slide-up">
             <div className="flex items-center justify-between">
               <div className="flex flex-col gap-0.5">
                 <span className="font-serif text-xl text-barber-text">
@@ -281,15 +263,16 @@ export default function AdminSchedule() {
                   {modal.mode === 'create' ? 'Configurar horario' : 'Editar horario'}
                 </span>
               </div>
-              <button onClick={closeModal} className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center">
+              <button onClick={closeModal} aria-label="Cerrar" className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center">
                 <CloseIcon />
               </button>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold tracking-wider uppercase text-barber-sub">Apertura</label>
+                <label htmlFor="sch-open" className="text-xs font-bold tracking-wider uppercase text-barber-sub">Apertura</label>
                 <input
+                  id="sch-open"
                   type="time"
                   value={openTime}
                   onChange={(e) => setOpenTime(e.target.value)}
@@ -297,8 +280,9 @@ export default function AdminSchedule() {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold tracking-wider uppercase text-barber-sub">Cierre</label>
+                <label htmlFor="sch-close" className="text-xs font-bold tracking-wider uppercase text-barber-sub">Cierre</label>
                 <input
+                  id="sch-close"
                   type="time"
                   value={closeTime}
                   onChange={(e) => setCloseTime(e.target.value)}
@@ -307,7 +291,6 @@ export default function AdminSchedule() {
               </div>
             </div>
 
-            {/* Preview */}
             {openTime && closeTime && openTime < closeTime && (
               <div className="bg-barber-gold/10 border border-barber-gold/25 rounded-xl px-4 py-3 flex items-center justify-between">
                 <span className="text-xs text-barber-mute">Horario</span>
@@ -337,7 +320,7 @@ export default function AdminSchedule() {
       {/* Delete confirm */}
       {confirmDel && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6">
-          <div className="w-full max-w-sm bg-barber-sidebar border border-barber-border rounded-3xl p-6 flex flex-col gap-5">
+          <div role="dialog" aria-modal="true" className="w-full max-w-sm bg-barber-sidebar border border-barber-border rounded-3xl p-6 flex flex-col gap-5">
             <div className="flex flex-col gap-1.5">
               <span className="font-serif text-xl text-barber-text">¿Eliminar horario?</span>
               <span className="text-sm text-barber-mute">
@@ -366,17 +349,10 @@ export default function AdminSchedule() {
           </div>
         </div>
       )}
-    </div>
+    </AdminLayout>
   )
 }
 
-function LogoutIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="#8FA69F" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
 function PlusIcon() {
   return (
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">

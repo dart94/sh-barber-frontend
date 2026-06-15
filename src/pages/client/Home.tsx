@@ -34,8 +34,8 @@ export default function ClientHome() {
           </div>
           <button
             onClick={() => setShowLogoutConfirm(true)}
+            aria-label="Cerrar sesión"
             className="w-10 h-10 rounded-full bg-barber-card border border-barber-border flex items-center justify-center"
-            title="Cerrar sesión"
           >
             <LogoutIcon />
           </button>

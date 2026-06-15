@@ -29,9 +29,7 @@ export default function BottomNav({ active }: Props) {
           >
             {tab.icon(isActive)}
             <span
-              className={`text-[11px] font-${isActive ? '700' : '600'} ${
-                isActive ? 'text-barber-gold-3' : 'text-barber-dim'
-              }`}
+              className={`text-[11px] ${isActive ? 'font-bold text-barber-gold-3' : 'font-semibold text-barber-dim'}`}
             >
               {tab.label}
             </span>

@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from 'react'
-import { useAdminAuth } from '../../contexts/AdminAuthContext'
-import AdminNav from '../../components/admin/AdminNav'
+import AdminLayout from '../../components/admin/AdminLayout'
 import {
   Appointment,
   getAdminAppointments,
@@ -50,7 +49,6 @@ const STATUS_CFG = {
 } as const
 
 export default function AdminDashboard() {
-  const { admin, logoutAdmin } = useAdminAuth()
   const [dayOffset, setDayOffset] = useState(0)
   const [appointments, setAppointments] = useState<Appointment[]>([])
   const [loading, setLoading] = useState(true)
@@ -93,34 +91,14 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-barber-bg flex flex-col max-w-lg mx-auto">
-
-      {/* Top bar */}
-      <div className="flex items-center justify-between px-5 pt-14 pb-4">
-        <div className="flex items-center gap-3">
-          <img src="/logo.jpg" alt="SH Barbería" className="w-9 h-9 rounded-xl border border-barber-gold/30" />
-          <div className="flex flex-col gap-0">
-            <span className="font-serif text-base text-barber-text leading-tight">SH Barbería</span>
-            <span className="text-[10px] font-bold tracking-widest uppercase text-barber-mute leading-tight">
-              {admin?.role === 'ADMIN' ? 'Administrador' : 'Barbero'} · {admin?.name}
-            </span>
-          </div>
-        </div>
-        <button
-          onClick={logoutAdmin}
-          className="w-9 h-9 rounded-full bg-barber-card border border-barber-border flex items-center justify-center"
-          title="Cerrar sesión"
-        >
-          <LogoutIcon />
-        </button>
-      </div>
-
-      <div className="flex-1 px-5 pb-8 flex flex-col gap-5 overflow-y-auto">
+    <AdminLayout>
+      <div className="px-5 md:px-8 pb-8 pt-5 flex flex-col gap-5 max-w-4xl w-full">
 
         {/* Date nav */}
         <div className="flex items-center justify-between bg-barber-card border border-barber-border rounded-2xl px-4 py-3">
           <button
             onClick={() => setDayOffset((d) => d - 1)}
+            aria-label="Día anterior"
             className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center active:scale-90 transition-transform"
           >
             <ChevronLeftIcon />
@@ -135,6 +113,7 @@ export default function AdminDashboard() {
           </div>
           <button
             onClick={() => setDayOffset((d) => d + 1)}
+            aria-label="Día siguiente"
             className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center active:scale-90 transition-transform"
           >
             <ChevronRightIcon />
@@ -142,7 +121,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {(Object.entries(counts) as [keyof typeof STATUS_CFG, number][]).map(([status, count]) => (
             <div key={status} className="bg-barber-card border border-barber-border rounded-2xl py-3 flex flex-col items-center gap-1">
               <span className={`text-xl font-bold ${STATUS_CFG[status].text}`}>{count}</span>
@@ -257,17 +236,7 @@ export default function AdminDashboard() {
           </div>
         )}
       </div>
-
-      <AdminNav />
-    </div>
-  )
-}
-
-function LogoutIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="#8FA69F" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    </AdminLayout>
   )
 }
 

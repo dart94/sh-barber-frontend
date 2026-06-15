@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { useAdminAuth } from '../../contexts/AdminAuthContext'
-import AdminNav from '../../components/admin/AdminNav'
+import AdminLayout from '../../components/admin/AdminLayout'
 import { Client, Appointment, adminGetClients, getAdminAppointments } from '../../lib/api'
 
 const STATUS_CFG = {
@@ -38,13 +37,11 @@ function avatarColor(id: string) {
 }
 
 export default function AdminClients() {
-  const { logoutAdmin } = useAdminAuth()
   const [clients, setClients] = useState<Client[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [search, setSearch] = useState('')
 
-  // Detail sheet
   const [selected, setSelected] = useState<Client | null>(null)
   const [appts, setAppts] = useState<Appointment[]>([])
   const [loadingAppts, setLoadingAppts] = useState(false)
@@ -57,6 +54,13 @@ export default function AdminClients() {
       .catch(() => setError('No se pudo cargar los clientes'))
       .finally(() => setLoading(false))
   }, [])
+
+  useEffect(() => {
+    if (!selected) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelected(null) }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [selected])
 
   const openClient = async (c: Client) => {
     setSelected(c)
@@ -81,31 +85,17 @@ export default function AdminClients() {
   })
 
   return (
-    <div className="min-h-screen bg-barber-bg flex flex-col max-w-lg mx-auto">
+    <AdminLayout>
+      <div className="px-5 md:px-8 pb-8 pt-4 flex flex-col gap-3 max-w-4xl w-full">
 
-      {/* Top bar */}
-      <div className="flex items-center justify-between px-5 pt-14 pb-3">
-        <div className="flex items-center gap-3">
-          <img src="/logo.jpg" alt="SH Barbería" className="w-9 h-9 rounded-xl border border-barber-gold/30" />
-          <div className="flex flex-col">
-            <span className="font-serif text-base text-barber-text leading-tight">Clientes</span>
-            <span className="text-[10px] font-bold tracking-widest uppercase text-barber-mute leading-tight">
-              {clients.length} registrados
-            </span>
-          </div>
-        </div>
-        <button onClick={logoutAdmin} className="w-9 h-9 rounded-full bg-barber-card border border-barber-border flex items-center justify-center">
-          <LogoutIcon />
-        </button>
-      </div>
-
-      {/* Search */}
-      <div className="px-5 pb-3">
+        {/* Search */}
         <div className="relative">
+          <label htmlFor="clients-search" className="sr-only">Buscar clientes</label>
           <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-barber-dim">
             <SearchIcon />
           </span>
           <input
+            id="clients-search"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -113,9 +103,13 @@ export default function AdminClients() {
             className="w-full bg-barber-card border border-barber-border rounded-xl pl-10 pr-4 py-3 text-sm text-barber-text placeholder-barber-dim focus:outline-none focus:border-barber-gold/50 transition-colors"
           />
         </div>
-      </div>
 
-      <div className="flex-1 px-5 pb-4 flex flex-col gap-2.5 overflow-y-auto">
+        {!loading && (
+          <span className="text-xs font-bold tracking-widest uppercase text-barber-mute">
+            {filtered.length} {filtered.length === 1 ? 'cliente' : 'clientes'}
+            {search ? ' encontrados' : ' registrados'}
+          </span>
+        )}
 
         {error && (
           <div className="bg-barber-red/10 border border-barber-red/30 rounded-2xl px-4 py-3">
@@ -124,56 +118,51 @@ export default function AdminClients() {
         )}
 
         {loading ? (
-          Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-16 rounded-2xl bg-barber-card border border-barber-border animate-pulse" />
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="h-16 rounded-2xl bg-barber-card border border-barber-border animate-pulse" />
+            ))}
+          </div>
         ) : filtered.length === 0 ? (
-          <div className="flex-1 flex flex-col items-center justify-center py-16 gap-2">
+          <div className="flex flex-col items-center justify-center py-16 gap-2">
             <span className="text-sm text-barber-mute">{search ? 'Sin resultados' : 'Sin clientes registrados'}</span>
           </div>
         ) : (
-          filtered.map((c) => (
-            <button
-              key={c.id}
-              onClick={() => openClient(c)}
-              className="w-full bg-barber-card border border-barber-border rounded-2xl px-4 py-3 flex items-center gap-3 active:scale-[0.99] transition-transform text-left"
-            >
-              {/* Avatar */}
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${avatarColor(c.id)}`}>
-                {initials(c.name)}
-              </div>
-
-              {/* Info */}
-              <div className="flex-1 min-w-0">
-                <div className="text-sm font-bold text-barber-text truncate">{c.name}</div>
-                <div className="text-xs text-barber-mute">{c.phone}</div>
-              </div>
-
-              {/* Stats */}
-              <div className="flex flex-col items-end gap-0.5 shrink-0">
-                <span className="text-xs font-bold text-barber-gold-2">{c.points} pts</span>
-                <span className="text-[10px] text-barber-dim">{c.visits} visitas</span>
-              </div>
-
-              <ChevronIcon />
-            </button>
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+            {filtered.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => openClient(c)}
+                className="w-full bg-barber-card border border-barber-border rounded-2xl px-4 py-3 flex items-center gap-3 active:scale-[0.99] transition-transform text-left"
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${avatarColor(c.id)}`}>
+                  {initials(c.name)}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-bold text-barber-text truncate">{c.name}</div>
+                  <div className="text-xs text-barber-mute">{c.phone}</div>
+                </div>
+                <div className="flex flex-col items-end gap-0.5 shrink-0">
+                  <span className="text-xs font-bold text-barber-gold-2">{c.points} pts</span>
+                  <span className="text-[10px] text-barber-dim">{c.visits} visitas</span>
+                </div>
+                <ChevronIcon />
+              </button>
+            ))}
+          </div>
         )}
-        <div className="h-2" />
       </div>
-
-      <AdminNav />
 
       {/* Client detail sheet */}
       {selected && (
         <div
           ref={overlayRef}
           onClick={(e) => { if (e.target === overlayRef.current) closeSheet() }}
-          className="fixed inset-0 bg-black/60 z-40 flex items-end justify-center"
+          className="fixed inset-0 bg-black/60 z-40 flex items-end md:items-center justify-center"
         >
-          <div className="w-full max-w-lg bg-barber-sidebar border-t border-barber-border rounded-t-3xl flex flex-col max-h-[85vh] animate-slide-up">
+          <div role="dialog" aria-modal="true" className="w-full max-w-lg bg-barber-sidebar border-t md:border border-barber-border rounded-t-3xl md:rounded-3xl flex flex-col max-h-[85vh] animate-slide-up">
 
-            {/* Sheet header */}
+            {/* Header */}
             <div className="flex items-center justify-between px-5 pt-5 pb-4 shrink-0">
               <div className="flex items-center gap-3">
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center text-base font-bold ${avatarColor(selected.id)}`}>
@@ -184,12 +173,12 @@ export default function AdminClients() {
                   <span className="text-xs text-barber-mute">{selected.phone}</span>
                 </div>
               </div>
-              <button onClick={closeSheet} className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center">
+              <button onClick={closeSheet} aria-label="Cerrar" className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center">
                 <CloseIcon />
               </button>
             </div>
 
-            {/* Stats row */}
+            {/* Stats */}
             <div className="grid grid-cols-3 gap-2 px-5 pb-4 shrink-0">
               <StatCard label="Puntos" value={String(selected.points)} color="text-barber-gold-2" />
               <StatCard label="Visitas" value={String(selected.visits)} color="text-barber-green" />
@@ -244,7 +233,7 @@ export default function AdminClients() {
           </div>
         </div>
       )}
-    </div>
+    </AdminLayout>
   )
 }
 
@@ -257,13 +246,6 @@ function StatCard({ label, value, color, small }: { label: string; value: string
   )
 }
 
-function LogoutIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="#8FA69F" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
 function SearchIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

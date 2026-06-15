@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { useAdminAuth } from '../../contexts/AdminAuthContext'
-import AdminNav from '../../components/admin/AdminNav'
+import AdminLayout from '../../components/admin/AdminLayout'
 import {
   Service,
   getServices,
@@ -13,26 +12,38 @@ type FormData = { name: string; description: string; price: string; duration: st
 const EMPTY: FormData = { name: '', description: '', price: '', duration: '' }
 
 export default function AdminServices() {
-  const { admin, logoutAdmin } = useAdminAuth()
   const [services, setServices] = useState<Service[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Modal state
   const [modal, setModal] = useState<'closed' | 'create' | 'edit'>('closed')
   const [editing, setEditing] = useState<Service | null>(null)
   const [form, setForm] = useState<FormData>(EMPTY)
   const [saving, setSaving] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
 
-  // Delete confirm
   const [confirmDelete, setConfirmDelete] = useState<Service | null>(null)
   const [deleting, setDeleting] = useState(false)
 
-  // Toggle acting
   const [toggling, setToggling] = useState<string | null>(null)
 
   const overlayRef = useRef<HTMLDivElement>(null)
+
+  // Escape to close create/edit modal
+  useEffect(() => {
+    if (modal === 'closed') return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') closeModal() }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [modal])
+
+  // Escape to close confirm-delete modal
+  useEffect(() => {
+    if (!confirmDelete) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setConfirmDelete(null) }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [confirmDelete])
 
   const load = () => {
     setLoading(true)
@@ -127,36 +138,18 @@ export default function AdminServices() {
   const inactive = services.filter((s) => !s.isActive)
 
   return (
-    <div className="min-h-screen bg-barber-bg flex flex-col max-w-lg mx-auto">
+    <AdminLayout>
+      <div className="px-5 md:px-8 pb-8 pt-4 flex flex-col gap-5 max-w-4xl w-full">
 
-      {/* Top bar */}
-      <div className="flex items-center justify-between px-5 pt-14 pb-4">
-        <div className="flex items-center gap-3">
-          <img src="/logo.jpg" alt="SH Barbería" className="w-9 h-9 rounded-xl border border-barber-gold/30" />
-          <div className="flex flex-col">
-            <span className="font-serif text-base text-barber-text leading-tight">Servicios</span>
-            <span className="text-[10px] font-bold tracking-widest uppercase text-barber-mute leading-tight">
-              {admin?.name}
-            </span>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
+        {/* Action bar */}
+        <div className="flex items-center justify-end">
           <button
             onClick={openCreate}
-            className="flex items-center gap-1.5 bg-gradient-to-r from-barber-gold to-[#A8843D] rounded-xl px-3 py-2 text-xs font-extrabold text-barber-bg active:scale-95 transition-transform"
+            className="flex items-center gap-1.5 bg-gradient-to-r from-barber-gold to-[#A8843D] rounded-xl px-4 py-2.5 text-sm font-extrabold text-barber-bg active:scale-95 transition-transform"
           >
-            <PlusIcon /> Nuevo
-          </button>
-          <button
-            onClick={logoutAdmin}
-            className="w-9 h-9 rounded-full bg-barber-card border border-barber-border flex items-center justify-center"
-          >
-            <LogoutIcon />
+            <PlusIcon /> Nuevo servicio
           </button>
         </div>
-      </div>
-
-      <div className="flex-1 px-5 pb-4 flex flex-col gap-5 overflow-y-auto">
 
         {error && (
           <div className="bg-barber-red/10 border border-barber-red/30 rounded-2xl px-4 py-3">
@@ -165,9 +158,11 @@ export default function AdminServices() {
         )}
 
         {loading ? (
-          Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-20 rounded-2xl bg-barber-card border border-barber-border animate-pulse" />
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="h-20 rounded-2xl bg-barber-card border border-barber-border animate-pulse" />
+            ))}
+          </div>
         ) : (
           <>
             {/* Active */}
@@ -180,16 +175,18 @@ export default function AdminServices() {
                   <span className="text-sm text-barber-mute">Sin servicios activos</span>
                 </div>
               ) : (
-                active.map((s) => (
-                  <ServiceCard
-                    key={s.id}
-                    service={s}
-                    toggling={toggling === s.id}
-                    onEdit={() => openEdit(s)}
-                    onToggle={() => handleToggle(s)}
-                    onDelete={() => setConfirmDelete(s)}
-                  />
-                ))
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {active.map((s) => (
+                    <ServiceCard
+                      key={s.id}
+                      service={s}
+                      toggling={toggling === s.id}
+                      onEdit={() => openEdit(s)}
+                      onToggle={() => handleToggle(s)}
+                      onDelete={() => setConfirmDelete(s)}
+                    />
+                  ))}
+                </div>
               )}
             </div>
 
@@ -199,45 +196,45 @@ export default function AdminServices() {
                 <span className="text-xs font-bold tracking-widest uppercase text-barber-mute">
                   Inactivos ({inactive.length})
                 </span>
-                {inactive.map((s) => (
-                  <ServiceCard
-                    key={s.id}
-                    service={s}
-                    toggling={toggling === s.id}
-                    onEdit={() => openEdit(s)}
-                    onToggle={() => handleToggle(s)}
-                    onDelete={() => setConfirmDelete(s)}
-                  />
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {inactive.map((s) => (
+                    <ServiceCard
+                      key={s.id}
+                      service={s}
+                      toggling={toggling === s.id}
+                      onEdit={() => openEdit(s)}
+                      onToggle={() => handleToggle(s)}
+                      onDelete={() => setConfirmDelete(s)}
+                    />
+                  ))}
+                </div>
               </div>
             )}
           </>
         )}
-        <div className="h-2" />
       </div>
-
-      <AdminNav />
 
       {/* Create / Edit modal */}
       {modal !== 'closed' && (
         <div
           ref={overlayRef}
           onClick={(e) => { if (e.target === overlayRef.current) closeModal() }}
-          className="fixed inset-0 bg-black/60 z-40 flex items-end justify-center"
+          className="fixed inset-0 bg-black/60 z-40 flex items-end md:items-center justify-center"
         >
-          <div className="w-full max-w-lg bg-barber-sidebar border-t border-barber-border rounded-t-3xl px-5 pt-5 pb-10 flex flex-col gap-5 animate-slide-up">
+          <div role="dialog" aria-modal="true" className="w-full max-w-lg bg-barber-sidebar border-t md:border border-barber-border rounded-t-3xl md:rounded-3xl px-5 pt-5 pb-10 md:pb-5 flex flex-col gap-5 animate-slide-up">
             <div className="flex items-center justify-between">
               <span className="font-serif text-xl text-barber-text">
                 {modal === 'create' ? 'Nuevo servicio' : 'Editar servicio'}
               </span>
-              <button onClick={closeModal} className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center">
+              <button onClick={closeModal} aria-label="Cerrar" className="w-8 h-8 rounded-full bg-barber-muted flex items-center justify-center">
                 <CloseIcon />
               </button>
             </div>
 
             <div className="flex flex-col gap-4">
-              <Field label="Nombre" required>
+              <Field label="Nombre" required htmlFor="svc-name">
                 <input
+                  id="svc-name"
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
@@ -246,8 +243,9 @@ export default function AdminServices() {
                 />
               </Field>
 
-              <Field label="Descripción (opcional)">
+              <Field label="Descripción (opcional)" htmlFor="svc-desc">
                 <textarea
+                  id="svc-desc"
                   value={form.description}
                   onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
                   placeholder="Breve descripción del servicio"
@@ -257,8 +255,9 @@ export default function AdminServices() {
               </Field>
 
               <div className="grid grid-cols-2 gap-3">
-                <Field label="Precio ($)" required>
+                <Field label="Precio ($)" required htmlFor="svc-price">
                   <input
+                    id="svc-price"
                     type="number"
                     min="0"
                     step="0.50"
@@ -268,8 +267,9 @@ export default function AdminServices() {
                     className={inputCls}
                   />
                 </Field>
-                <Field label="Duración (min)" required>
+                <Field label="Duración (min)" required htmlFor="svc-duration">
                   <input
+                    id="svc-duration"
                     type="number"
                     min="5"
                     step="5"
@@ -302,7 +302,7 @@ export default function AdminServices() {
       {/* Delete confirm */}
       {confirmDelete && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6">
-          <div className="w-full max-w-sm bg-barber-sidebar border border-barber-border rounded-3xl p-6 flex flex-col gap-5">
+          <div role="dialog" aria-modal="true" className="w-full max-w-sm bg-barber-sidebar border border-barber-border rounded-3xl p-6 flex flex-col gap-5">
             <div className="flex flex-col gap-1.5">
               <span className="font-serif text-xl text-barber-text">¿Desactivar servicio?</span>
               <span className="text-sm text-barber-mute">
@@ -327,17 +327,17 @@ export default function AdminServices() {
           </div>
         </div>
       )}
-    </div>
+    </AdminLayout>
   )
 }
 
 const inputCls =
   'w-full bg-barber-muted border border-barber-border rounded-xl px-4 py-3 text-sm text-barber-text placeholder-barber-dim focus:outline-none focus:border-barber-gold/60 transition-colors'
 
-function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
+function Field({ label, required, htmlFor, children }: { label: string; required?: boolean; htmlFor?: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-xs font-bold tracking-wider uppercase text-barber-sub">
+      <label htmlFor={htmlFor} className="text-xs font-bold tracking-wider uppercase text-barber-sub">
         {label}{required && <span className="text-barber-red ml-0.5">*</span>}
       </label>
       {children}
@@ -366,6 +366,7 @@ function ServiceCard({
         <div className="flex items-center gap-1.5 shrink-0">
           <button
             onClick={onEdit}
+            aria-label="Editar servicio"
             className="w-8 h-8 rounded-xl bg-barber-muted flex items-center justify-center active:scale-90 transition-transform"
           >
             <EditIcon />
@@ -373,8 +374,8 @@ function ServiceCard({
           <button
             onClick={onToggle}
             disabled={toggling}
+            aria-label={service.isActive ? 'Desactivar servicio' : 'Activar servicio'}
             className="w-8 h-8 rounded-xl bg-barber-muted flex items-center justify-center active:scale-90 transition-transform disabled:opacity-50"
-            title={service.isActive ? 'Desactivar' : 'Activar'}
           >
             {toggling ? (
               <span className="w-3 h-3 border border-barber-sub/40 border-t-barber-sub rounded-full animate-spin block" />
@@ -387,6 +388,7 @@ function ServiceCard({
           {service.isActive && (
             <button
               onClick={onDelete}
+              aria-label="Desactivar servicio"
               className="w-8 h-8 rounded-xl bg-barber-red/10 flex items-center justify-center active:scale-90 transition-transform"
             >
               <TrashIcon />
@@ -396,9 +398,7 @@ function ServiceCard({
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5">
-          <span className="font-serif text-lg text-barber-gold-3">${service.price.toFixed(0)}</span>
-        </div>
+        <span className="font-serif text-lg text-barber-gold-3">${service.price.toFixed(0)}</span>
         <div className="w-px h-4 bg-barber-border" />
         <span className="text-xs text-barber-sub">{service.duration} min</span>
         <div className="w-px h-4 bg-barber-border" />
@@ -414,13 +414,6 @@ function PlusIcon() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
       <path d="M6 1v10M1 6h10" stroke="#0B2422" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  )
-}
-function LogoutIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6" stroke="#8FA69F" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }

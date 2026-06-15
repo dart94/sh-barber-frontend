@@ -1,4 +1,4 @@
-const BASE = (import.meta.env.VITE_API_URL ?? 'https://sh-barber-backend-production.up.railway.app') + '/api'
+const BASE = (import.meta.env.VITE_API_URL ?? '') + '/api'
 
 async function request<T>(path: string, options?: RequestInit, tokenKey = 'client_token'): Promise<T> {
   const token = localStorage.getItem(tokenKey)
@@ -28,16 +28,16 @@ export type Client = {
   createdAt: string
 }
 
-export const clientAuth = (phone: string) =>
+export const clientAuth = (phone: string, pin: string) =>
   request<{ exists: boolean; token?: string; client?: Client }>('/clients/auth', {
     method: 'POST',
-    body: JSON.stringify({ phone }),
+    body: JSON.stringify({ phone, pin }),
   })
 
-export const clientRegister = (name: string, phone: string) =>
+export const clientRegister = (data: { name: string; phone: string; pin: string }) =>
   request<{ token: string; client: Client }>('/clients', {
     method: 'POST',
-    body: JSON.stringify({ name, phone }),
+    body: JSON.stringify(data),
   })
 
 export const getClientMe = () => request<Client>('/clients/me')
@@ -96,6 +96,9 @@ export const createAppointment = (data: {
   })
 
 export const getMyAppointments = () => request<Appointment[]>('/appointments/mine')
+
+export const cancelClientAppointment = (id: string) =>
+  request<Appointment>(`/appointments/${id}/cancel`, { method: 'PATCH' })
 
 // ── Loyalty ───────────────────────────────────────────────
 export type Reward = { type: string; points: number; description: string }

@@ -95,9 +95,16 @@ export default function LoyaltyScreen() {
 
         {/* Success banner */}
         {redeemSuccess && (
-          <div className="bg-barber-green/15 border border-barber-green/40 rounded-2xl px-4 py-3 flex items-start gap-3">
+          <div aria-live="polite" className="bg-barber-green/15 border border-barber-green/40 rounded-2xl px-4 py-3 flex items-start gap-3">
             <span className="text-barber-green text-lg mt-0.5">✓</span>
-            <span className="text-sm text-barber-green">{redeemSuccess}</span>
+            <span className="text-sm text-barber-green flex-1">{redeemSuccess}</span>
+            <button
+              onClick={() => setRedeemSuccess(null)}
+              aria-label="Cerrar"
+              className="shrink-0 text-barber-green/70 hover:text-barber-green transition-colors"
+            >
+              <span className="text-base leading-none">✕</span>
+            </button>
           </div>
         )}
 

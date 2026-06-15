@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useClientAuth } from '../../contexts/ClientAuthContext'
 import BottomNav from '../../components/client/BottomNav'
-import { Appointment, getMyAppointments } from '../../lib/api'
+import { Appointment, getMyAppointments, cancelClientAppointment } from '../../lib/api'
 
 const STATUS_CFG = {
   PENDING:   { label: 'Pendiente',  badge: 'bg-yellow-400/10 text-yellow-400',    dot: 'bg-yellow-400' },
@@ -35,6 +35,8 @@ export default function AppointmentsScreen() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [tab, setTab] = useState<Tab>('upcoming')
+  const [cancelConfirmId, setCancelConfirmId] = useState<string | null>(null)
+  const [cancellingId, setCancellingId] = useState<string | null>(null)
 
   useEffect(() => {
     setLoading(true)
@@ -44,6 +46,19 @@ export default function AppointmentsScreen() {
       .catch(() => setError('No se pudieron cargar tus citas'))
       .finally(() => setLoading(false))
   }, [client?.id])
+
+  const handleCancel = async (id: string) => {
+    setCancellingId(id)
+    try {
+      const updated = await cancelClientAppointment(id)
+      setAppointments((prev) => prev.map((a) => a.id === id ? { ...a, status: updated.status } : a))
+      setCancelConfirmId(null)
+    } catch {
+      // cancel failed silently; state stays unchanged
+    } finally {
+      setCancellingId(null)
+    }
+  }
 
   const now = new Date()
 
@@ -167,6 +182,33 @@ export default function AppointmentsScreen() {
                         </span>
                       )}
                     </div>
+
+                    {(appt.status === 'PENDING' || appt.status === 'CONFIRMED') && (
+                      cancelConfirmId === appt.id ? (
+                        <div className="flex gap-2 mt-1">
+                          <button
+                            onClick={() => handleCancel(appt.id)}
+                            disabled={cancellingId === appt.id}
+                            className="flex-1 bg-barber-red/15 border border-barber-red/40 rounded-xl py-2 text-xs font-bold text-barber-red disabled:opacity-50"
+                          >
+                            {cancellingId === appt.id ? '...' : 'Sí, cancelar'}
+                          </button>
+                          <button
+                            onClick={() => setCancelConfirmId(null)}
+                            className="flex-1 border border-barber-border rounded-xl py-2 text-xs font-bold text-barber-sub"
+                          >
+                            No
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => setCancelConfirmId(appt.id)}
+                          className="mt-1 text-xs font-semibold text-barber-red/70 hover:text-barber-red transition-colors text-left"
+                        >
+                          Cancelar cita
+                        </button>
+                      )
+                    )}
                   </div>
                 </div>
               )

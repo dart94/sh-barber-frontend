@@ -49,10 +49,11 @@ export default function AdminLogin() {
           className="bg-barber-card border border-barber-border rounded-3xl p-6 flex flex-col gap-5"
         >
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-bold tracking-wider uppercase text-barber-sub">
+            <label htmlFor="login-email" className="text-xs font-bold tracking-wider uppercase text-barber-sub">
               Correo electrónico
             </label>
             <input
+              id="login-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -63,11 +64,12 @@ export default function AdminLogin() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-bold tracking-wider uppercase text-barber-sub">
+            <label htmlFor="login-password" className="text-xs font-bold tracking-wider uppercase text-barber-sub">
               Contraseña
             </label>
             <div className="relative">
               <input
+                id="login-password"
                 type={showPass ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

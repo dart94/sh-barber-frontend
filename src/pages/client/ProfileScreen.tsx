@@ -94,6 +94,7 @@ export default function ProfileScreen() {
               <span className="font-serif text-2xl text-barber-text">{client?.name}</span>
               <button
                 onClick={() => { setNameInput(client?.name ?? ''); setEditing(true) }}
+                aria-label="Editar nombre"
                 className="w-7 h-7 rounded-lg bg-barber-card border border-barber-border flex items-center justify-center"
               >
                 <EditIcon />
