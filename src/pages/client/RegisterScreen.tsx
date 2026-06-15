@@ -78,6 +78,7 @@ export default function RegisterScreen() {
           <label htmlFor="reg-pin" className="text-xs font-bold tracking-widest uppercase text-barber-mute">
             PIN de seguridad (4 dígitos)
           </label>
+          <PinDots length={pin.length} />
           <input
             id="reg-pin"
             type="password"
@@ -86,7 +87,9 @@ export default function RegisterScreen() {
             value={pin}
             onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
             placeholder="····"
-            className="w-full bg-barber-card border border-barber-border rounded-2xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none focus:border-barber-gold/60 transition-colors"
+            className={`w-full bg-barber-card rounded-2xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none transition-all border ${
+              pin.length === 4 ? 'border-barber-gold' : pin.length > 0 ? 'border-barber-gold/40' : 'border-barber-border'
+            }`}
           />
         </div>
 
@@ -94,6 +97,10 @@ export default function RegisterScreen() {
           <label htmlFor="reg-pin-confirm" className="text-xs font-bold tracking-widest uppercase text-barber-mute">
             Confirmar PIN
           </label>
+          <PinDots
+            length={confirmPin.length}
+            color={confirmPin.length === 4 ? (confirmPin === pin ? 'green' : 'red') : 'default'}
+          />
           <input
             id="reg-pin-confirm"
             type="password"
@@ -102,8 +109,18 @@ export default function RegisterScreen() {
             value={confirmPin}
             onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, ''))}
             placeholder="····"
-            className="w-full bg-barber-card border border-barber-border rounded-2xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none focus:border-barber-gold/60 transition-colors"
+            className={`w-full bg-barber-card rounded-2xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none transition-all border ${
+              confirmPin.length === 0 ? 'border-barber-border'
+              : confirmPin.length === 4 && confirmPin === pin ? 'border-barber-green'
+              : confirmPin.length === 4 ? 'border-barber-red'
+              : 'border-barber-gold/40'
+            }`}
           />
+          {confirmPin.length === 4 && (
+            <span className={`text-xs font-semibold ${confirmPin === pin ? 'text-barber-green' : 'text-barber-red'}`}>
+              {confirmPin === pin ? '✓ PINs coinciden' : '✗ PINs no coinciden'}
+            </span>
+          )}
         </div>
 
         {error && (
@@ -118,6 +135,22 @@ export default function RegisterScreen() {
           {loading ? 'Creando cuenta...' : 'Crear cuenta'}
         </button>
       </form>
+    </div>
+  )
+}
+
+function PinDots({ length, color = 'default' }: { length: number; color?: 'default' | 'green' | 'red' }) {
+  const filled = color === 'green' ? 'bg-barber-green' : color === 'red' ? 'bg-barber-red' : 'bg-barber-gold'
+  return (
+    <div className="flex justify-center gap-3 py-1">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div
+          key={i}
+          className={`w-3 h-3 rounded-full transition-all duration-150 ${
+            i < length ? `${filled} scale-110` : 'bg-barber-muted border border-barber-border'
+          }`}
+        />
+      ))}
     </div>
   )
 }

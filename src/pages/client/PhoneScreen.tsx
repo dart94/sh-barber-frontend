@@ -121,10 +121,11 @@ export default function PhoneScreen() {
             </span>
           </div>
 
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2">
             <label htmlFor="phone-pin" className="text-xs font-bold tracking-wider uppercase text-barber-sub">
               PIN de seguridad
             </label>
+            <PinDots length={pin.length} />
             <input
               id="phone-pin"
               type="password"
@@ -133,7 +134,9 @@ export default function PhoneScreen() {
               value={pin}
               onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
               placeholder="····"
-              className="w-full bg-barber-muted border border-barber-border rounded-xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none focus:border-barber-gold/60 transition-colors"
+              className={`w-full bg-barber-muted rounded-xl px-4 py-4 text-center text-2xl tracking-[0.5em] text-barber-text placeholder-barber-dim focus:outline-none transition-all border ${
+                pin.length === 4 ? 'border-barber-gold' : pin.length > 0 ? 'border-barber-gold/40' : 'border-barber-border'
+              }`}
               autoFocus
             />
           </div>
@@ -164,6 +167,21 @@ export default function PhoneScreen() {
         Si es tu primera visita te pediremos tu nombre y un PIN.<br />
         Tu PIN protege tu cuenta.
       </p>
+    </div>
+  )
+}
+
+function PinDots({ length }: { length: number }) {
+  return (
+    <div className="flex justify-center gap-3 py-1">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div
+          key={i}
+          className={`w-3 h-3 rounded-full transition-all duration-150 ${
+            i < length ? 'bg-barber-gold scale-110' : 'bg-barber-muted border border-barber-border'
+          }`}
+        />
+      ))}
     </div>
   )
 }
