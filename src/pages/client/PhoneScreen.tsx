@@ -91,10 +91,22 @@ export default function PhoneScreen() {
                 setPhone(digits)
               }}
               placeholder="Ej. 6441234567"
-              className="w-full bg-barber-card border border-barber-border rounded-2xl px-4 py-4 text-base font-semibold text-barber-text placeholder:text-barber-dim focus:outline-none focus:border-barber-gold/60 transition-colors"
+              className={`w-full bg-barber-card rounded-2xl px-4 py-4 text-base font-semibold text-barber-text placeholder:text-barber-dim focus:outline-none transition-all border ${
+                phone.length === 0 ? 'border-barber-border'
+                : phone.length === 10 ? 'border-barber-gold'
+                : 'border-barber-gold/40'
+              }`}
               autoFocus
             />
-            <span className="text-xs text-barber-dim text-right">{phone.length}/10</span>
+            {phone.length === 0 && (
+              <span className="text-xs text-barber-dim text-right">10 dígitos</span>
+            )}
+            {phone.length > 0 && phone.length < 10 && (
+              <span className="text-xs text-barber-gold/70 text-right">Faltan {10 - phone.length} dígitos</span>
+            )}
+            {phone.length === 10 && (
+              <span className="text-xs text-barber-green font-semibold text-right">✓ Número completo</span>
+            )}
           </div>
 
           {error && (
